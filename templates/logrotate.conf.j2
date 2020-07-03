@@ -1,0 +1,15 @@
+# Conf for sympa log files rotation
+/var/log/sympa.log {
+       missingok
+	   weekly
+       notifempty
+       rotate 52
+       compress
+       delaycompress
+	   copytruncate
+	   create 660 sympa adm
+       postrotate
+               invoke-rc.d --quiet sympa reload > /dev/null
+               invoke-rc.d --quiet rsyslog reload > /dev/null || true
+       endscript
+}

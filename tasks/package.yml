@@ -1,0 +1,9 @@
+---
+  
+- name: Install Sympa from distribution package
+  package:
+    name: sympa
+  when: sympa_installation_method == 'package'
+  tags:
+    - sympa
+    

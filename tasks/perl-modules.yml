@@ -1,0 +1,38 @@
+---
+# Copyright (C) 2020 Stefan Hornburg (Racke) <racke@linuxia.de>
+# SPDX-License-Identifier: Artistic-2.0
+
+- name: Install Perl modules (Setup)
+  import_role:
+    name: cpanm-setup
+
+- name: Download Mhonarc sources
+  git:
+    repo: "{{ mhonarc_repository_url }}"
+    dest: "{{ mhonarc_source_directory }}"
+    force: yes
+    version: "{{ mhonarc_repository_version }}"
+  become_user: "{{ sympa_unix_user }}"
+  when: ansible_os_family == 'Suse'
+  vars:
+    ansible_ssh_pipelining: true
+
+- name: Install Mhonarc
+  command: perl install.me -binpath ~/perl5/bin/ -perl /usr/bin/perl -libpath ~/perl5/lib/perl5/ -nodoc -noman
+  args:
+    chdir: "{{ mhonarc_source_directory }}"
+  become_user: "{{ sympa_unix_user }}"
+  when: ansible_os_family == 'Suse'
+  vars:
+    ansible_ssh_pipelining: true
+    
+- name: Install Perl modules
+  import_role:
+    name: cpanm-apps
+  vars:
+    cpanm_user: "{{ sympa_unix_user }}"
+    cpanm_create_makefile_pl: true
+    cpanm_apps:
+      sympa:
+        directory: "{{ sympa_source_directory }}"
+        create_makefile_pl: true

@@ -1,0 +1,45 @@
+---
+# Copyright (C) 2020 Stefan Hornburg (Racke) <racke@linuxia.de>
+# SPDX-License-Identifier: Artistic-2.0
+
+- name: Create XML
+  set_fact:
+    sympa_list_xmlstring: |
+      <?xml version="1.0" encoding="utf-8"?>
+      <list>
+        <owner multiple="1">
+          <email>biz@icdev.de</email>
+        </owner>
+        <description>Quis eos dolorem iusto sint et sequi eveniet rerum. Unde eum laborum facere tenetur. Saepe aliquid similique harum temporibus. Et fugiat aspernatur praesentium et animi ducimus exercitationem. Explicabo alias sit non omnis voluptatum expedita.
+        Nesciunt nemo sed eum. Ipsam et repudiandae inventore reprehenderit. Iure nihil nulla officia et laboriosam voluptatem. Non veritatis labore culpa provident odit. Qui quis sed et cum dolorum ratione. Possimus blanditiis velit a reprehenderit ducimus itaque numquam.
+        Ut et sed neque quis in ducimus. Beatae nesciunt ipsam cupiditate. Quas vel dicta porro id voluptate aut minima. Modi ea deleniti quam quasi error. Quia exercitationem et architecto fuga fuga. Et odio sunt praesentium.</description>
+        <status>open</status>
+        <topics>computing/network</topics>
+        <subject>Abraham Gottlieb</subject>
+        <type>public_web_forum</type>
+        <listname>{{ item.name }}</listname>
+      </list>
+  with_items: "{{ sympa_lists }}"
+  
+- name: Display XML
+  debug:
+    var: sympa_list_xmlstring
+
+- name: Save XML as file
+  copy:
+    content: "{{ sympa_list_xmlstring }}"
+    dest: "/home/{{ sympa_unix_user }}/{{ item.name }}.xml"
+  with_items: "{{ sympa_lists }}"
+      
+- name: Add list
+  command: "{{ sympa_command }} --create_list --input_file=/home/{{ sympa_unix_user }}/{{ item.name }}.xml"
+  with_items: "{{ sympa_lists }}"
+  become_user: "{{ sympa_unix_user }}"
+  environment:
+    sympalib: /home/sympa/perl5/lib/
+  vars:
+    ansible_ssh_pipelining: true
+  register: sympa_add_list_result
+
+- debug:
+    var: sympa_add_list_result

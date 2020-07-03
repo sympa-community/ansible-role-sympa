@@ -1,0 +1,18 @@
+---
+# Copyright (C) 2020 Stefan Hornburg (Racke) <racke@linuxia.de>
+# SPDX-License-Identifier: Artistic-2.0
+
+- name: restart sympa
+  systemd:
+    name: sympa
+    state: restarted
+
+- name: restart wwsympa
+  systemd:
+    name: wwsympa
+    state: restarted
+
+- name: restart rsyslog
+  systemd:
+    name: rsyslog
+    state: restarted

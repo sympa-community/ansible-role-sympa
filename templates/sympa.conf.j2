@@ -1,0 +1,23 @@
+# Main domain
+
+domain {{ sympa_domain }}
+
+# Listmaster
+
+listmaster {{ sympa_listmaster }}
+
+# Database configuration
+db_type {{ sympa_database.type }}
+db_name {{ sympa_database.name }}
+db_user {{ sympa_database.user }}
+{% if 'password' in sympa_database %}
+db_passwd {{ sympa_database.password }}
+{% endif %}
+{% if 'host' in sympa_database %}
+db_host {{ sympa_database.port }}
+{% endif %}
+{% if 'port' in sympa_database %}
+db_port {{ sympa_database.port }}
+{% endif %}
+#db_host
+

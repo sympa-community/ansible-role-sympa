@@ -1,0 +1,3 @@
+---
+sympa_database_driver_mysql: p5-DBD-mysql
+sympa_database_driver_postgresql: p5-DBD-Pg

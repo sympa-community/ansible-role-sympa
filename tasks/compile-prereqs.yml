@@ -1,0 +1,23 @@
+---
+# Copyright (C) 2020 Stefan Hornburg (Racke) <racke@linuxia.de>
+# SPDX-License-Identifier: Artistic-2.0
+
+- name: Create unix group for Sympa (SuSE)
+  group:
+    name: "{{ sympa_unix_group }}"
+  when: ansible_os_family == 'Suse'
+
+- name: Create unix user for Sympa
+  user:
+    name: "{{ sympa_unix_group }}"
+    shell: /bin/bash
+    createhome: yes
+    password_lock: yes
+    
+- name: Create directory for sources
+  file:
+    state: directory
+    path: "{{ sympa_source_directory }}"
+    owner: "{{ sympa_unix_user }}"
+    group: "{{ sympa_unix_group }}"
+    mode: 0755

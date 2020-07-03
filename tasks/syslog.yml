@@ -1,0 +1,36 @@
+---
+
+- name: Install logging tools
+  package:
+    name:
+      - rsyslog
+      - logrotate
+
+- name: Create sympa log file
+  file:
+    dest: /var/log/sympa.log
+    state: touch
+    mode: 0660
+    owner: "{{ sympa_unix_user }}"
+    group: "{{ sympa_unix_group }}"
+  tags: syslog
+  
+- name: Install custom rsyslog conf file
+  template:
+    src: syslog.conf.j2
+    dest: /etc/rsyslog.d/sympa.conf
+    owner: root
+    group: root
+    mode: 0644
+  tags: syslog
+  notify: restart rsyslog
+
+- name: Configure logrotate
+  template:
+    src: logrotate.conf.j2
+    dest: /etc/logrotate.d/sympa
+    owner: root
+    group: root
+    mode: 0644
+  tags: logrotate
+  

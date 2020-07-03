@@ -1,0 +1,22 @@
+---
+# Copyright (C) 2020 Stefan Hornburg (Racke) <racke@linuxia.de>
+# SPDX-License-Identifier: Artistic-2.0
+
+- name: Ensures git is installed.
+  package:
+    name: git
+    state: present
+
+- name: Download sources from repository
+  git:
+    repo: "{{ sympa_repository_url }}"
+    dest: "{{ sympa_source_directory }}"
+    force: yes
+    version: "{{ sympa_repository_version }}"
+  become_user: "{{ sympa_unix_user }}"
+  vars:
+    ansible_ssh_pipelining: true
+
+- name: Import tasks to install Perl modules
+  import_tasks: perl-modules.yml
+    

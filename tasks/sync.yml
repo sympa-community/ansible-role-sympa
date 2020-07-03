@@ -1,0 +1,25 @@
+---
+# Copyright (C) 2020 Stefan Hornburg (Racke) <racke@linuxia.de>
+# SPDX-License-Identifier: Artistic-2.0
+
+- name: Synchronize sources from local directory
+  synchronize:
+    src: "{{ sympa_sync_directory }}/."
+    dest: "{{ sympa_source_directory }}"
+#  become_user: "{{ sympa_unix_user }}"
+#  vars:
+#    ansible_ssh_pipelining: true
+
+- name: Fix permissions
+  command: chown -R sympa:sympa {{ sympa_source_directory }}
+    
+- name: Import tasks to install Perl modules
+  import_tasks: perl-modules.yml
+
+- name: Install stuff we need for compiling
+  package:
+    name:
+      - autoconf
+      - automake
+      - gettext
+  

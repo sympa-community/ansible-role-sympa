@@ -1,0 +1,31 @@
+---
+# Copyright (C) 2020 Stefan Hornburg (Racke) <racke@linuxia.de>
+# SPDX-License-Identifier: Artistic-2.0
+
+- name: Install FCGI wrapper
+  package:
+    name: spawn-fcgi
+  tags:
+    - sympa
+    - wwsympa
+
+- name: Create systemd unit for WWSympa
+  template:
+    src: wwsympa.service.j2
+    dest: /etc/systemd/system/wwsympa.service
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart wwsympa
+  tags:
+    - sympa
+    - wwsympa
+
+- name: Ensure that WWSympa is enabled and started
+  service:
+    name: wwsympa
+    enabled: yes
+    state: started
+  tags:
+    - sympa
+    - wwsympa

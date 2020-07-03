@@ -1,0 +1,47 @@
+---
+# Copyright (C) 2020 Stefan Hornburg (Racke) <racke@linuxia.de>
+# SPDX-License-Identifier: Artistic-2.0
+
+
+- name: Install stuff we need for compiling
+  package:
+    name:
+      - autoconf
+      - automake
+      - "{% if ansible_os_family == 'Suse' %}gettext-tools{% elif ansible_os_family == 'RedHat' %}gettext-devel{% else %}gettext{% endif %}" 
+  
+- name: Run autoconf
+  command: autoreconf -i
+  args:
+    chdir: "{{ sympa_source_directory }}"
+  become_user: "{{ sympa_unix_user }}"
+  vars:
+    ansible_ssh_pipelining: true  
+  when: sympa_installation_method != 'source'
+
+- name: Configure Sympa
+  command: |
+    ./configure --prefix=/home/{{ sympa_unix_user }} --with-lockdir=/var/lock
+    {% if ansible_os_family != 'FreeBSD' %}--without-initdir --with-unitsdir=/etc/systemd/system{% else %}--with-initdir=/etc/rc.d{% endif %} 
+  args:
+    chdir: "{{ sympa_source_directory }}"
+  become_user: "{{ sympa_unix_user }}"
+  vars:
+    ansible_ssh_pipelining: true  
+
+- name: Make Sympa
+  command: make
+  args:
+    chdir: "{{ sympa_source_directory }}"
+  become_user: "{{ sympa_unix_user }}"
+  vars:
+    ansible_ssh_pipelining: true
+
+- name: Install Sympa
+  command: make install
+  args:
+    chdir: "{{ sympa_source_directory }}"
+
+- name: Set variable for Sympa command
+  set_fact:
+    sympa_command: "/home/{{ sympa_unix_user }}/bin/sympa.pl"
