@@ -107,7 +107,7 @@
     dest: "/etc/systemd/system/{{ item }}.service.d/10-locallib.conf"
     owner: root
     group: root
-    mode: 0640
+    mode: 0644
   with_items: "{{ sympa_services }}"
   register: sympa_service_dropin
   when: ansible_service_mgr == "systemd"
