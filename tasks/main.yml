@@ -62,8 +62,10 @@
 
 - name: Enable syslog
   import_tasks: syslog.yml
-  when: sympa_installation_method != 'package'
-    
+  when:
+    - sympa_installation_method != 'package'
+    - ansible_os_family != 'FreeBSD'
+
 - name: Create directory
   file:
     state: directory
