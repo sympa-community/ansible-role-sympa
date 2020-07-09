@@ -16,10 +16,39 @@
     owner: root
     group: root
     mode: 0644
+  register: wwsympa_unit_file
   notify: restart wwsympa
   tags:
     - sympa
     - wwsympa
+
+- name: Create directory for systemd dropin file
+  file:
+    state: directory
+    path: "/etc/systemd/system/wwsympa.service.d"
+    owner: root
+    group: root
+    mode: 0755
+  with_items: "{{ sympa_services }}"
+  when: ansible_service_mgr == "systemd"
+
+- name: Add drop in file for systemd
+  copy:
+    content: |
+      [Service]
+      Environment=PERL5LIB=/home/{{ sympa_unix_user }}/perl5/lib/perl5
+    dest: "/etc/systemd/system/wwsympa.service.d/10-locallib.conf"
+    owner: root
+    group: root
+    mode: 0644
+  register: wwsympa_service_dropin
+  when: ansible_service_mgr == "systemd"
+
+- name: Reload systemd if necessary
+  systemd:
+    daemon_reload: yes
+  when:
+    - wwsympa_unit_file.changed or wwsympa_service_dropin.changed
 
 - name: Ensure that WWSympa is enabled and started
   service:
