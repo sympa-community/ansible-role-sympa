@@ -21,3 +21,10 @@ db_port {{ sympa_database.port }}
 {% endif %}
 #db_host
 
+# Security settings
+
+## Switch off case sensitivity setting for passwords
+password_case sensitive
+
+## Use bcrypt hash for passwords
+password_hash bcrypt
