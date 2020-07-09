@@ -6,6 +6,9 @@ domain {{ sympa_domain }}
 
 listmaster {{ sympa_listmaster }}
 
+# Logging
+log_level {{ sympa_config_log_level }}
+
 # Database configuration
 db_type {{ sympa_database.type }}
 db_name {{ sympa_database.name }}

@@ -17,6 +17,8 @@ sympa_services:
   - sympa-outgoing
   - sympa-task
 
+sympa_config_log_level: 0
+
 sympa_lists: []
 
 sympa_web_fcgi_enabled: true
