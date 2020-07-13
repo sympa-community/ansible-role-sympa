@@ -25,7 +25,7 @@ sympa_web_fcgi_enabled: true
 sympa_web_nginx_snippet: |
   location /sympa {
     include fastcgi_params;
-    fastcgi_pass  unix:/run/wwwsympa/wwsympa.socket;
+    fastcgi_pass  unix:/run/wwsympa/wwsympa.socket;
   }
 
   location /static-sympa {
