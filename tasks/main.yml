@@ -58,7 +58,9 @@
 - name: Install MTA with sendmail binary
   package:
     name: postfix
-  when: sympa_sendmail_results.rc == 1
+  when:
+    - not ansible_check_mode
+    - sympa_sendmail_results.rc == 1
 
 - name: Enable syslog
   import_tasks: syslog.yml
