@@ -22,6 +22,8 @@ sympa_config_log_level: 0
 sympa_lists: []
 
 sympa_web_fcgi_enabled: true
+sympa_web_fcgi_protocol: https
+
 sympa_web_nginx_snippet: |
   location /sympa {
     include fastcgi_params;

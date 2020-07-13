@@ -6,6 +6,11 @@ domain {{ sympa_domain }}
 
 listmaster {{ sympa_listmaster }}
 
+{% if sympa_web_fcgi_enabled %}
+# Web interface
+wwsympa_url {{ sympa_web_fcgi_protocol }}://{{ sympa_domain }}/sympa
+{% endif %}
+
 # Logging
 log_level {{ sympa_config_log_level }}
 
