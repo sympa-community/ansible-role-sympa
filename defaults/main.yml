@@ -18,6 +18,8 @@ sympa_services:
   - sympa-task
 
 sympa_config_log_level: 0
+sympa_config_password_hash: bcrypt
+sympa_config_password_case: sensitive
 
 sympa_lists: []
 

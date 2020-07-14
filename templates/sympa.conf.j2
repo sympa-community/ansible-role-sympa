@@ -32,7 +32,7 @@ db_port {{ sympa_database.port }}
 # Security settings
 
 ## Switch off case sensitivity setting for passwords
-password_case sensitive
+password_case {{ sympa_config_password_case }}
 
-## Use bcrypt hash for passwords
-password_hash bcrypt
+## Password hash
+password_hash {{ sympa_config_password_hash }}
