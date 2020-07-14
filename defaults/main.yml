@@ -25,6 +25,9 @@ sympa_web_fcgi_enabled: true
 sympa_web_fcgi_protocol: https
 
 sympa_web_nginx_snippet: |
+  location = / {
+    return 301 /sympa;
+  }
   location /sympa {
     include fastcgi_params;
     fastcgi_pass  unix:/run/wwsympa/wwsympa.socket;
