@@ -36,3 +36,8 @@ password_case {{ sympa_config_password_case }}
 
 ## Password hash
 password_hash {{ sympa_config_password_hash }}
+
+# Email distribution settings
+
+## Path to MTA
+sendmail {{ sympa_config_sendmail }}

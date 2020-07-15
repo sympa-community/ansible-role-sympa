@@ -20,6 +20,7 @@ sympa_services:
 sympa_config_log_level: 0
 sympa_config_password_hash: bcrypt
 sympa_config_password_case: sensitive
+sympa_config_sendmail: /usr/sbin/sendmail
 
 sympa_lists: []
 
