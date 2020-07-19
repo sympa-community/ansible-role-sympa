@@ -41,7 +41,7 @@
     - sympa
     
 - name: Run tasks specific for installation method
-  import_tasks: "{{ sympa_installation_method }}.yml"
+  include_tasks: "{{ sympa_installation_method }}.yml"
   tags:
     - sympa
 
