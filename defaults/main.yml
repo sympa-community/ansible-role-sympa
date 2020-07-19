@@ -7,6 +7,10 @@ sympa_source_directory: /usr/local/src/sympa
 sympa_unix_user: sympa
 sympa_unix_group: sympa
 
+sympa_build_options:
+  setuid_fcgi: false
+  setuid_queue: false
+
 sympa_repository_url: https://github.com/sympa-community/sympa.git
 sympa_repository_version: sympa-6.2
 
