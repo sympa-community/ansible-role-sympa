@@ -68,18 +68,18 @@
     - sympa_installation_method != 'package'
     - ansible_os_family != 'FreeBSD'
 
-- name: Create directory
+- name: Create directory for file with list aliases
   file:
     state: directory
-    path: /etc/mail
+    path: "{{ sympa_config_sendmail_aliases.split('/')[:-1] | join('/') }}"
     owner: "{{ sympa_unix_user }}"
     group: "{{ sympa_unix_group }}"
     mode: 0755
 
-- name: Create file with aliases
+- name: Create file for list aliases
   file:
     state: touch
-    path: /etc/mail/sympa_aliases
+    path: "{{ sympa_config_sendmail_aliases }}"
     owner: "{{ sympa_unix_user }}"
     group: "{{ sympa_unix_group }}"
  
