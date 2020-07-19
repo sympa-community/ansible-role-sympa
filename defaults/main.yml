@@ -3,6 +3,7 @@
 # SPDX-License-Identifier: Artistic-2.0
 
 sympa_installation_method: repository
+sympa_installation_directory: /usr/local/sympa
 sympa_source_directory: /usr/local/src/sympa
 sympa_unix_user: sympa
 sympa_unix_group: sympa
