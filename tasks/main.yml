@@ -82,7 +82,15 @@
     path: "{{ sympa_config_sendmail_aliases }}"
     owner: "{{ sympa_unix_user }}"
     group: "{{ sympa_unix_group }}"
- 
+
+- name: Create Sympa configuration directory
+  file:
+    state: directory
+    path: /etc/sympa
+    owner: "{{ sympa_unix_user }}"
+    group: "{{ sympa_unix_group }}"
+    mode: 0755
+
 - name: Create configuration file sympa.conf2
   template:
     src: sympa.conf.j2
