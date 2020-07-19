@@ -1,9 +1,9 @@
 ---
-  
+# Copyright (C) 2020 Stefan Hornburg (Racke) <racke@linuxia.de>
+# SPDX-License-Identifier: Artistic-2.0
+
 - name: Install Sympa from distribution package
   package:
     name: sympa
-  when: sympa_installation_method == 'package'
   tags:
     - sympa
-    
