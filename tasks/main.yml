@@ -91,7 +91,7 @@
     group: "{{ sympa_unix_group }}"
     mode: 0755
 
-- name: Create configuration file sympa.conf2
+- name: Create configuration file sympa.conf
   template:
     src: sympa.conf.j2
     dest: /etc/sympa/sympa.conf
