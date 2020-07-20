@@ -7,6 +7,26 @@
     name: sympa
     state: restarted
 
+- name: restart sympa-archive
+  systemd:
+    name: sympa-archive
+    state: restarted
+
+- name: restart sympa-bounce
+  systemd:
+    name: sympa-bounce
+    state: restarted
+
+- name: restart sympa-outgoing
+  systemd:
+    name: sympa-outgoing
+    state: restarted
+
+- name: restart sympa-task
+  systemd:
+    name: sympa-task
+    state: restarted
+
 - name: restart wwsympa
   systemd:
     name: wwsympa

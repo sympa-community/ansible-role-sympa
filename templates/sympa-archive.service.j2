@@ -1,0 +1,11 @@
+[Unit]
+Description=Sympa mailing list manager (archiving)
+After=syslog.target
+BindsTo=sympa.service
+
+[Service]
+Type=forking
+PIDFile={{ sympa_installation_directory }}/archived.pid
+ExecStart={{ sympa_installation_directory }}/bin/archived.pl
+User={{ sympa_unix_user }}
+Group={{ sympa_unix_group }}

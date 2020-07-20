@@ -101,6 +101,20 @@
   tags:
     - sympa
 
+- name: Add unit files for sympa services
+  template:
+    src: "{{ item }}.service.j2"
+    dest: "/etc/systemd/system/{{ item }}.service"
+    owner: root
+    group: root
+    mode: 0755
+  with_items: "{{ sympa_services }}"
+  when: ansible_service_mgr == "systemd"
+  register: sympa_service_unit
+  notify: "restart {{ item }}"
+  tags:
+    - sympa
+
 - name: Create directory for systemd dropin file
   file:
     state: directory
@@ -130,7 +144,7 @@
   with_items: "{{ sympa_services }}"
   when:
     - ansible_service_mgr == "systemd"
-    - sympa_service_dropin.changed
+    - sympa_service_unit.changed or sympa_service_dropin.changed
 
 - name: Ensure that Sympa is enabled and started
   service:

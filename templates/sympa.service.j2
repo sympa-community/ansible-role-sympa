@@ -1,0 +1,22 @@
+[Unit]
+Description=Sympa mailing list manager
+After=syslog.target
+Wants=sympa-outgoing.service
+Before=sympa-outgoing.service
+Wants=sympa-archive.service
+Before=sympa-archive.service
+Wants=sympa-bounce.service
+Before=sympa-bounce.service
+Wants=sympa-task.service
+Before=sympa-task.service
+
+[Service]
+Type=forking
+PIDFile={{ sympa_installation_directory }}/sympa_msg.pid
+ExecStartPre={{ sympa_installation_directory }}/bin/sympa.pl --health_check
+ExecStart={{ sympa_installation_directory }}/bin/sympa_msg.pl
+User={{ sympa_unix_user }}
+Group={{ sympa_unix_group }}
+
+[Install]
+WantedBy=multi-user.target

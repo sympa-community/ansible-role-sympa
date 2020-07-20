@@ -29,9 +29,12 @@
 - name: Configure Sympa
   command: |
     ./configure --prefix="{{ sympa_installation_directory }}" --with-lockdir=/var/lock
-    {% if ansible_os_family != 'FreeBSD' %}--without-initdir --with-unitsdir=/etc/systemd/system{% else %}--with-initdir=/etc/rc.d{% endif %} 
-    {% if not sympa_build_options.setuid_fcgi %} --disable-setuid_fcgi{% endif %}
-    {% if not sympa_build_options.setuid_queue %} --disable-setuid_queue{% endif %}
+    {% if ansible_os_family != 'FreeBSD' %} --without-initdir{% else %}--with-initdir=/etc/rc.d{% endif %}
+    {% if not sympa_build_options.setuid_fcgi %} --disable-setuid_fcgi
+    {% endif %}
+    {% if not sympa_build_options.setuid_queue %} --disable-setuid_queue
+    {% endif %}
+    --without-smrshdir
   args:
     chdir: "{{ sympa_source_directory }}"
   become_user: "{{ sympa_unix_user }}"
@@ -50,6 +53,9 @@
   command: make install
   args:
     chdir: "{{ sympa_source_directory }}"
+  become_user: "{{ sympa_unix_user }}"
+  vars:
+    ansible_ssh_pipelining: true
 
 - name: Set variable for Sympa command
   set_fact:
