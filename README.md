@@ -1,6 +1,7 @@
 # Ansible Role: Sympa
 
-Role to install [Sympa](https://github.com/sympa-community).
+Role to install [Sympa](https://github.com/sympa-community/sympa). It
+doesn't support robots for now, this feature will be added later.
 
 ## Problems
 
@@ -12,6 +13,9 @@ MIME::EncWords module)
 ## Requirements
 
 Local MTA. This is installed by most distributions.
+
+Nginx needs to be installed before running the Sympa role, as the Nginx user
+is referred by the wwsympa service unit.
 
 ## Variables
 
@@ -25,6 +29,20 @@ Example:
       user: sympa
       password: nevairbe
 
+### Installation
+
+You can pick from different installation methods.
+
+#### *sympa_installation_directory*
+
+Installation directory. Defaults to `/usr/local/sympa`.
+
+### Aliases
+
+#### *sympa_config_sendmail_aliases*
+
+Location of the global file with the list aliases. Defaults to `/etc/mail/sympa/aliases`.
+
 ## Dependencies
 
 None.
@@ -33,11 +51,11 @@ None.
 
     - hosts: server
       roles:
-        - { role: racke.fail2ban }
+        - { role: racke.sympa }
 
 ## License
 
-GPLv2
+Artistic License 2.0
 
 ## Author Information
 
