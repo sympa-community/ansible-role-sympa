@@ -43,7 +43,7 @@ sympa_web_nginx_snippet: |
   }
 
   location /static-sympa {
-    alias /home/sympa/static_content;
+    alias {{ sympa_installation_directory }}/static_content;
   }
 
 mhonarc_repository_url: https://github.com/Conservatory/MHonArc
