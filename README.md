@@ -17,6 +17,14 @@ Local MTA. This is installed by most distributions.
 Nginx needs to be installed before running the Sympa role, as the Nginx user
 is referred by the wwsympa service unit.
 
+## Integration
+
+### Nginx
+
+The Sympa role provides a snippet for Nginx in the variable
+*sympa_web_nginx_snippet* which can be included in a virtual host
+configuration file.
+
 ## Variables
 
 The database configuration for Sympa is required.
