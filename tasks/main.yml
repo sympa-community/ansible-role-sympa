@@ -98,7 +98,9 @@
     owner: "{{ sympa_unix_user }}"
     group: "{{ sympa_unix_group }}"
     mode: 0640
-  notify: restart sympa
+  notify:
+    - restart sympa
+    - restart wwsympa
   tags:
     - sympa
 
