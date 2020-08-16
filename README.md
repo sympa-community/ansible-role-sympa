@@ -51,6 +51,12 @@ Installation directory. Defaults to `/usr/local/sympa`.
 
 Location of the global file with the list aliases. Defaults to `/etc/mail/sympa/aliases`.
 
+### WWSympa
+
+#### *sympa_web_fcgi_enabled*
+
+Whether WWSympa is enabled (default).
+
 ## Dependencies
 
 None.
