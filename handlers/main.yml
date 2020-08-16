@@ -31,6 +31,7 @@
   systemd:
     name: wwsympa
     state: restarted
+  when: sympa_web_fcgi_enabled
 
 - name: restart rsyslog
   systemd:
