@@ -1,0 +1,4 @@
+---
+sympa_database_driver_mysql: libdbi-drivers-dbd-mysql
+sympa_database_driver_postgresql: libdbi-drivers-dbd-pgsql
+sympa_web_unix_user: nginx
