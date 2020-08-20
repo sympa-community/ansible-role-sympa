@@ -13,6 +13,7 @@
 - name: Install stuff we need for compiling
   package:
     name:
+      - gcc
       - autoconf
       - automake
       - "{% if ansible_os_family == 'Suse' %}gettext-tools{% elif ansible_os_family == 'RedHat' %}gettext-devel{% else %}gettext{% endif %}" 
