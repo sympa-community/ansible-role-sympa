@@ -41,9 +41,25 @@ Example:
 
 You can pick from different installation methods.
 
+#### *sympa_source_directory*
+
+Directory for the Sympa sources. The tarball will be also downloaded to this directory if
+*source* installation method is used.
+
 #### *sympa_installation_directory*
 
 Installation directory. Defaults to `/usr/local/sympa`.
+
+#### Source installation method
+
+##### *sympa_source_version*
+
+Sympa version, e.g. *6.2.56*.
+
+##### *sympa_source_url*
+
+Sympa download location. The default value includes *sympa_source_version*,
+e.g. https://github.com/sympa-community/sympa/releases/download/6.2.56/sympa-6.2.52.tar.gz.
 
 ### Aliases
 
