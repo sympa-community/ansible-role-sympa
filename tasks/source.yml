@@ -18,6 +18,7 @@
   become_user: "{{ sympa_unix_user }}"
   vars:
     ansible_ssh_pipelining: true
+  ignore_errors: "{{ ansible_check_mode }}"
 
 - name: Adjust value for source directory
   set_fact:
