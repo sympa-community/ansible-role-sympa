@@ -59,7 +59,7 @@ Sympa version, e.g. *6.2.56*.
 ##### *sympa_source_url*
 
 Sympa download location. The default value includes *sympa_source_version*,
-e.g. https://github.com/sympa-community/sympa/releases/download/6.2.56/sympa-6.2.52.tar.gz.
+e.g. https://github.com/sympa-community/sympa/releases/download/6.2.56/sympa-6.2.56.tar.gz.
 
 ### Aliases
 
