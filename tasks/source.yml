@@ -1,3 +1,27 @@
 ---
 # Copyright (C) 2020 Stefan Hornburg (Racke) <racke@linuxia.de>
 # SPDX-License-Identifier: Artistic-2.0
+
+- name: Download sources
+  get_url:
+    url: "{{ sympa_source_url }}"
+    dest: "{{ sympa_source_directory }}"
+    owner: "{{ sympa_unix_user }}"
+    group: "{{ sympa_unix_group }}"
+
+- name: Unpack the tarball
+  unarchive:
+    src: "{{ sympa_source_directory }}/sympa-{{ sympa_source_version }}.tar.gz"
+    dest: "{{ sympa_source_directory }}"
+    remote_src: yes
+  become: true
+  become_user: "{{ sympa_unix_user }}"
+  vars:
+    ansible_ssh_pipelining: true
+
+- name: Adjust value for source directory
+  set_fact:
+    sympa_source_directory: "{{ sympa_source_directory }}/sympa-{{ sympa_source_version }}"
+
+- name: Import tasks to install Perl modules
+  import_tasks: perl-modules.yml
