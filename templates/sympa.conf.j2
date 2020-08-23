@@ -22,7 +22,7 @@ db_user {{ sympa_database.user }}
 db_passwd {{ sympa_database.password }}
 {% endif %}
 {% if 'host' in sympa_database %}
-db_host {{ sympa_database.port }}
+db_host {{ sympa_database.host }}
 {% endif %}
 {% if 'port' in sympa_database %}
 db_port {{ sympa_database.port }}
