@@ -32,6 +32,7 @@ sympa_config_sendmail: /usr/sbin/sendmail
 sympa_config_sendmail_aliases: /etc/mail/sympa/aliases
 
 sympa_lists: []
+sympa_web_authentication: []
 
 sympa_web_fcgi_enabled: true
 sympa_web_fcgi_protocol: https

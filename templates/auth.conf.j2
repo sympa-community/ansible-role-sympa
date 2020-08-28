@@ -1,0 +1,6 @@
+{% for auth_method in sympa_web_authentication %}
+{{ auth_method.backend }}{% for key,var in auth_method.items() %}
+{% if key != 'backend' %}
+  {{ key }} {{ var }}{% endif %}  
+{% endfor %}
+{% endfor %}

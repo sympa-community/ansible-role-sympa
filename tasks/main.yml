@@ -104,6 +104,20 @@
   tags:
     - sympa
 
+- name: Create configuration file auth.conf
+  template:
+    src: auth.conf.j2
+    dest: /etc/sympa/auth.conf
+    owner: "{{ sympa_unix_user }}"
+    group: "{{ sympa_unix_group }}"
+    mode: 0640
+  when: sympa_web_authentication | count > 0
+  notify:
+    - restart sympa
+    - restart wwsympa
+  tags:
+    - sympa
+
 - name: Add unit files for sympa services
   template:
     src: "{{ item }}.service.j2"
