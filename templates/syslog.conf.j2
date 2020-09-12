@@ -2,9 +2,9 @@
 # rsyslog configuration for sympa
 #
 
-:programname, contains, "sympa_msg"     /var/log/sympa.log
-:programname, contains, "wwsympa"       /var/log/sympa.log
-:programname, contains, "archived"      /var/log/sympa.log
-:programname, contains, "bounced"       /var/log/sympa.log
-:programname, contains, "bulk"          /var/log/sympa.log
-:programname, contains, "task_manager"  /var/log/sympa.log
+:programname, contains, "sympa_msg"     -/var/log/sympa.log
+:programname, contains, "wwsympa"       -/var/log/sympa.log
+:programname, contains, "archived"      -/var/log/sympa.log
+:programname, contains, "bounced"       -/var/log/sympa.log
+:programname, contains, "bulk"          -/var/log/sympa.log
+:programname, contains, "task_manager"  -/var/log/sympa.log
