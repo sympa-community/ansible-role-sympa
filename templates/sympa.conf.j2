@@ -14,6 +14,9 @@ wwsympa_url {{ sympa_web_fcgi_protocol }}://{{ sympa_domain }}/sympa
 # Logging
 log_level {{ sympa_config_log_level }}
 
+# Directories
+etc {{ sympa_config_etc }}
+
 # Database configuration
 db_type {{ sympa_database.type }}
 db_name {{ sympa_database.name }}
