@@ -63,4 +63,11 @@
 
 - name: Set variable for Sympa command
   set_fact:
-    sympa_command: "/home/{{ sympa_unix_user }}/bin/sympa.pl"
+    sympa_command: "{{ sympa_installation_directory }}/bin/sympa.pl"
+
+- name: Install alias for Sympa command
+  file:
+    state: link
+    src: "{{ sympa_command }}"
+    dest: /usr/local/bin/sympa
+  become: yes
