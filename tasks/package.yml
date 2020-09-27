@@ -5,5 +5,6 @@
 - name: Install Sympa from distribution package
   package:
     name: sympa
+  become: yes
   tags:
     - sympa
