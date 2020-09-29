@@ -55,6 +55,14 @@
     - sympa
     - sympa-database-driver
 
+- name: Install database driver for ODBC
+  package:
+    name: "{{ sympa_database_driver_odbc }}"
+  when: sympa_install_odbc_driver
+  tags:
+    - sympa
+    - sympa-database-driver
+
 - name: Run tasks specific for installation method
   include_tasks: "{{ sympa_installation_method }}.yml"
   tags:

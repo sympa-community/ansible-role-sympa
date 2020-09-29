@@ -55,3 +55,4 @@ mhonarc_repository_url: https://github.com/Conservatory/MHonArc
 mhonarc_source_directory: /home/sympa/MHonArc
 mhonarc_repository_version: master
 
+sympa_install_odbc_driver: false
