@@ -11,7 +11,9 @@
         - "{{ ansible_os_family }}.yml"
         - "defaults.yml"
       paths: osvars
-  tags: sympa
+  tags:
+    - sympa
+    - sympa-database-driver
 
 - name: Check for valid installation method
   assert:
@@ -36,10 +38,23 @@
 - name: Install database driver for Perl (PostgreSQL)
   package:
     name: "{{ sympa_database_driver_postgresql }}"
-  when: sympa_installation_method != 'package'
+  when:
+    - sympa_installation_method != 'package'
+    - sympa_database.type in ['PostgreSQL', 'Pg']
   tags:
     - sympa
-    
+    - sympa-database-driver
+
+- name: Install database driver for Perl (MySQL / MariaDB)
+  package:
+    name: "{{ sympa_database_driver_mysql }}"
+  when:
+    - sympa_installation_method != 'package'
+    - sympa_database.type in ['MySQL', 'mysql']
+  tags:
+    - sympa
+    - sympa-database-driver
+
 - name: Run tasks specific for installation method
   include_tasks: "{{ sympa_installation_method }}.yml"
   tags:
