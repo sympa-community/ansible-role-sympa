@@ -24,5 +24,17 @@
   set_fact:
     sympa_source_directory: "{{ sympa_source_directory }}/sympa-{{ sympa_source_version }}"
 
+- name: Ensure that patch binary is installed
+  package:
+    name: patch
+  when: sympa_source_patches | count
+
+- name: Apply patches
+  patch:
+    src: "{{ item }}"
+    basedir: "{{ sympa_source_directory }}"
+    strip: 1
+  with_items: "{{ sympa_source_patches }}"
+
 - name: Import tasks to install Perl modules
   import_tasks: perl-modules.yml
