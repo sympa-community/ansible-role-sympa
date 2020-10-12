@@ -1,0 +1,77 @@
+commit f21f0761e41c51c0c5b70c879d54260bd9e40034
+Author: Stefan Hornburg (Racke) <racke@linuxia.de>
+Date:   Mon Oct 12 09:48:52 2020 +0300
+
+    Add "alias_wrapper" configuration parameter.
+    
+    This allows you to invoke the command from "sendmail_aliases" without using the wrapper (#946).
+
+diff --git a/src/lib/Sympa/Aliases/Template.pm b/src/lib/Sympa/Aliases/Template.pm
+index b27600286..585b5acdc 100644
+--- a/src/lib/Sympa/Aliases/Template.pm
++++ b/src/lib/Sympa/Aliases/Template.pm
+@@ -39,8 +39,6 @@ use base qw(Sympa::Aliases::CheckSMTP);
+ 
+ my $language = Sympa::Language->instance;
+ my $log      = Sympa::Log->instance;
+-my $alias_wrapper =
+-    Sympa::Constants::LIBEXECDIR . '/sympa_newaliases-wrapper';
+ 
+ sub _aliases {
+     my $self = shift;
+@@ -125,7 +123,7 @@ sub add {
+ 
+     # Newaliases
+     unless ($self->{file}) {
+-        system($alias_wrapper, '--domain=' . $list->{'domain'});
++        system(alias_wrapper($list), '--domain=' . $list->{'domain'});
+         if ($CHILD_ERROR == -1) {
+             $log->syslog('err', 'Failed to execute sympa_newaliases: %m');
+             return undef;
+@@ -204,7 +202,7 @@ sub del {
+ 
+     # Newaliases
+     unless ($self->{file}) {
+-        system($alias_wrapper, '--domain=' . $list->{'domain'});
++        system(alias_wrapper($list), '--domain=' . $list->{'domain'});
+         if ($CHILD_ERROR == -1) {
+             $log->syslog('err', 'Failed to execute sympa_newaliases: %m');
+             return undef;
+@@ -231,6 +229,17 @@ sub del {
+     return 1;
+ }
+ 
++sub alias_wrapper {
++    my $list = shift;
++    my $command;
++
++    if (Conf::get_robot_conf($list->{'domain'}, 'aliases_wrapper') eq 'on') {
++        return Sympa::Constants::LIBEXECDIR . '/sympa_newaliases-wrapper';
++    }
++
++    return Sympa::Constants::SBINDIR . '/sympa_newaliases.pl';
++}
++
+ # Check if an alias is already defined.
+ # Old name: already_defined() in alias_manager.pl.
+ sub _already_defined {
+diff --git a/src/lib/Sympa/Config/Schema.pm b/src/lib/Sympa/Config/Schema.pm
+index abd4a67ea..ed0ccec1c 100644
+--- a/src/lib/Sympa/Config/Schema.pm
++++ b/src/lib/Sympa/Config/Schema.pm
+@@ -485,6 +485,15 @@ our %pinfo = (
+         gettext_comment =>
+             'This may be "makemap", "newaliases", "postalias", "postmap" or full path to custom program.',
+     },
++    aliases_wrapper => {
++        context    => [qw(domain site)],
++        order      => 4.07,
++        group      => 'mta',
++        format  => ['off', 'on'],
++        synonym => {'0' => 'off', '1' => 'on'},
++        default => 'on',    ,
++        gettext_id => 'Whether to use the alias wrapper',
++    },
+     aliases_db_type => {
+         context    => [qw(domain site)],
+         order      => 4.05,
