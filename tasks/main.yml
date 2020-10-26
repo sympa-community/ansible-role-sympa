@@ -121,6 +121,7 @@
     owner: "{{ sympa_unix_user }}"
     group: "{{ sympa_unix_group }}"
     mode: 0640
+  when: sympa_installation_method != 'package'
   notify:
     - restart sympa
     - restart wwsympa
@@ -161,7 +162,9 @@
     group: root
     mode: 0755
   with_items: "{{ sympa_services }}"
-  when: ansible_service_mgr == "systemd"
+  when:
+    - sympa_installation_method != 'package'
+    - ansible_service_mgr == "systemd"
   register: sympa_service_unit
   notify: "restart {{ item }}"
   tags:
@@ -192,8 +195,12 @@
 
 - name: WWSympa
   import_tasks: wwsympa.yml
-  when: sympa_web_fcgi_enabled
+  when:
+    - sympa_installation_method != 'package'
+    - sympa_web_fcgi_enabled
     
 - name: SOAP
   import_tasks: soap.yml
-  when: sympa_soap_fcgi_enabled
+  when:
+    - sympa_installation_method != 'package'
+    - sympa_soap_fcgi_enabled
