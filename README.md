@@ -54,7 +54,7 @@ Installation directory. Defaults to `/usr/local/sympa`.
 
 ##### *sympa_source_version*
 
-Sympa version, e.g. *6.2.56*.
+Sympa version, defaults to *6.2.58*.
 
 ##### *sympa_source_url*
 
