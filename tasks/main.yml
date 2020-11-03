@@ -143,6 +143,16 @@
     - sympa
     - sympa-conf
 
+- name: Run upgrade command
+  command: "{{ sympa_command }} --upgrade"
+  become_user: "{{ sympa_unix_user }}"
+  vars:
+    ansible_ssh_pipelining: true
+  environment:
+    PERL5LIB: "/home/{{ sympa_unix_user }}/perl5/lib/perl5"
+  when:
+    - sympa_installation_method != 'package'
+
 - name: Add unit files for sympa services
   template:
     src: "{{ item }}.service.j2"
