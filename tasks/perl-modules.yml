@@ -25,6 +25,15 @@
   when: ansible_os_family == 'Suse'
   vars:
     ansible_ssh_pipelining: true
+
+- name: Install module for Bcrypt support
+  import_role:
+    name: cpanm-apps
+    tasks_from: cpanm.yml
+  vars:
+    perlapp_modules_with_cpanm:
+      Crypt::Eksblowfish::Bcrypt:
+  when: sympa_config_password_hash == 'bcrypt'
     
 - name: Install Perl modules
   import_role:
