@@ -9,6 +9,11 @@
     owner: "{{ sympa_unix_user }}"
     group: "{{ sympa_unix_group }}"
 
+- name: Install GNU tar on Alpine Linux
+  package:
+    name: tar
+  when: ansible_os_family == 'Alpine'
+
 - name: Unpack the tarball
   unarchive:
     src: "{{ sympa_source_directory }}/sympa-{{ sympa_source_version }}.tar.gz"
