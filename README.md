@@ -67,6 +67,11 @@ e.g. https://github.com/sympa-community/sympa/releases/download/6.2.56/sympa-6.2
 
 Location of the global file with the list aliases. Defaults to `/etc/mail/sympa/aliases`.
 
+#### *sympa_config_aliases_program*
+
+Program to update the hash file for the aliases. Select `postalias` for using
+Sympa with Postfix MTA.
+
 ### WWSympa
 
 #### *sympa_web_fcgi_enabled*
