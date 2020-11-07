@@ -46,6 +46,9 @@ password_hash {{ sympa_config_password_hash }}
 
 ## Path to MTA
 sendmail {{ sympa_config_sendmail }}
+{% if sympa_config_aliases_program %}
+aliases_program {{ sympa_config_aliases_program }}
+{% endif %}
 
 ## Aliases
 sendmail_aliases {{ sympa_config_sendmail_aliases }}
