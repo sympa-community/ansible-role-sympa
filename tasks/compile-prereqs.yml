@@ -9,7 +9,8 @@
 
 - name: Create unix user for Sympa
   user:
-    name: "{{ sympa_unix_group }}"
+    name: "{{ sympa_unix_user }}"
+    group: "{{ sympa_unix_group }}"
     shell: /bin/bash
     createhome: yes
     password_lock: yes
