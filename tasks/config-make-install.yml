@@ -65,6 +65,14 @@
   set_fact:
     sympa_command: "{{ sympa_installation_directory }}/bin/sympa.pl"
 
+- name: Ensure that /usr/local/bin exists (CentOS 8)
+  file:
+    state: directory
+    path: /usr/local/bin
+    owner: root
+    group: root
+    mode: '755'
+
 - name: Install alias for Sympa command
   file:
     state: link
