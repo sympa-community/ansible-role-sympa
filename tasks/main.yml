@@ -209,7 +209,7 @@
 
 - name: Manage lists
   import_tasks: manage-lists.yml
-  when: sympa_lists | count > 1
+  when: sympa_lists | count > 0
 
 - name: WWSympa
   import_tasks: wwsympa.yml

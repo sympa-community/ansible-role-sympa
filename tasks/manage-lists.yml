@@ -8,15 +8,15 @@
       <?xml version="1.0" encoding="utf-8"?>
       <list>
         <owner multiple="1">
-          <email>biz@icdev.de</email>
+          <email>{{ item.owner }}</email>
         </owner>
         <description>Quis eos dolorem iusto sint et sequi eveniet rerum. Unde eum laborum facere tenetur. Saepe aliquid similique harum temporibus. Et fugiat aspernatur praesentium et animi ducimus exercitationem. Explicabo alias sit non omnis voluptatum expedita.
         Nesciunt nemo sed eum. Ipsam et repudiandae inventore reprehenderit. Iure nihil nulla officia et laboriosam voluptatem. Non veritatis labore culpa provident odit. Qui quis sed et cum dolorum ratione. Possimus blanditiis velit a reprehenderit ducimus itaque numquam.
         Ut et sed neque quis in ducimus. Beatae nesciunt ipsam cupiditate. Quas vel dicta porro id voluptate aut minima. Modi ea deleniti quam quasi error. Quia exercitationem et architecto fuga fuga. Et odio sunt praesentium.</description>
         <status>open</status>
-        <topics>computing/network</topics>
-        <subject>Abraham Gottlieb</subject>
-        <type>public_web_forum</type>
+        <topics>{{ item.topics | default('computing/network') }}</topics>
+        <subject>{{ item.subject }}</subject>
+        <type>{{ item.type }}</type>
         <listname>{{ item.name }}</listname>
       </list>
   with_items: "{{ sympa_lists }}"
@@ -36,7 +36,8 @@
   with_items: "{{ sympa_lists }}"
   become_user: "{{ sympa_unix_user }}"
   environment:
-    sympalib: /home/sympa/perl5/lib/
+     PERL5LIB: "/home/{{ sympa_unix_user }}/perl5/lib/perl5"
+     SYMPALIB: "/home/{{ sympa_unix_user }}/perl5/lib/perl5"
   vars:
     ansible_ssh_pipelining: true
   register: sympa_add_list_result
