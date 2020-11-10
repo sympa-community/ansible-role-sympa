@@ -2,6 +2,10 @@
 # Copyright (C) 2020 Stefan Hornburg (Racke) <racke@linuxia.de>
 # SPDX-License-Identifier: Artistic-2.0
 
+- name: Ensure that rsync is installed
+  package:
+    name: rsync
+
 - name: Synchronize sources from local directory
   synchronize:
     src: "{{ sympa_sync_directory }}/."
