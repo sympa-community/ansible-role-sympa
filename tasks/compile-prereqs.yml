@@ -2,10 +2,9 @@
 # Copyright (C) 2020 Stefan Hornburg (Racke) <racke@linuxia.de>
 # SPDX-License-Identifier: Artistic-2.0
 
-- name: Create unix group for Sympa (SuSE)
+- name: Create unix group for Sympa
   group:
     name: "{{ sympa_unix_group }}"
-  when: ansible_os_family == 'Suse'
 
 - name: Create unix user for Sympa
   user:
