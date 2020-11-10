@@ -19,6 +19,13 @@ is referred by the wwsympa service unit.
 
 ## Integration
 
+### Exim
+
+This role doesn't cover the installation of Exim. However, it is recommended
+to disable the newaliases wrapper:
+
+   sympa_config_aliases_program: none
+
 ### Nginx
 
 The Sympa role provides a snippet for Nginx in the variable
