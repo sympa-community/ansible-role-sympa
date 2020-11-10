@@ -10,6 +10,14 @@
     group: "{{ sympa_unix_group }}"
     mode: 0755
 
+- name: Ensure that configuration directory exists
+  file:
+    state: directory
+    path: "{{ sympa_configuration_directory }}"
+    owner: "{{ sympa_unix_user }}"
+    group: "{{ sympa_unix_group }}"
+    mode: 0755
+
 - name: Install stuff we need for compiling
   package:
     name:
