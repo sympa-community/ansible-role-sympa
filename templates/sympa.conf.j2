@@ -53,3 +53,7 @@ sendmail_aliases {{ sympa_config_sendmail_aliases }}
 {% if sympa_config_aliases_program %}
 aliases_program {{ sympa_config_aliases_program }}
 {% endif %}
+
+{% if sympa_config_aliases_wrapper is defined %}
+aliases_wrapper {{ sympa_config_aliases_wrapper }}
+{% endif %}
