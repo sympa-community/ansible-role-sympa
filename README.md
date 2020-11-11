@@ -64,6 +64,21 @@ Directory for the Sympa sources. The tarball will be also downloaded to this dir
 
 Installation directory. Defaults to `/usr/local/sympa`.
 
+#### Build options
+
+This applies to all installation methods except *package*:
+
+  sympa_build_options:
+    setuid_fcgi: false
+    setuid_queue: false
+
+*setuid_fcgi* and *setuid_queue* determine whether the setuid flag is
+applied to the FCGI wrapper and the
+queue program, respectively.
+
+There is no reason to apply these setuid flags, especially as setuid
+binaries are a security risk.
+
 #### Source installation method
 
 ##### *sympa_source_version*
