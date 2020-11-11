@@ -32,6 +32,13 @@ The Sympa role provides a snippet for Nginx in the variable
 *sympa_web_nginx_snippet* which can be included in a virtual host
 configuration file.
 
+## Inclusion of data sources
+
+### ODBC
+
+In order to the necessary ODBC DBI driver, set the
+*sympa_install_odbc_driver* variable to "yes".
+
 ## Variables
 
 The database configuration for Sympa is required.
