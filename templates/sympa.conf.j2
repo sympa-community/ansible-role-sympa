@@ -4,7 +4,11 @@ domain {{ sympa_domain }}
 
 # Listmaster
 
+{% if sympa_listmaster is defined %}
 listmaster {% if sympa_listmaster is iterable %}{{ sympa_listmaster | join(',') }}{% else %}{{ sympa_listmaster }}{% endif %}
+{% else %}
+listmaster listmaster@{{ sympa_domain }}
+{% endif %}
 
 {% if sympa_web_fcgi_enabled %}
 # Web interface
