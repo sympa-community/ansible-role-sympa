@@ -6,6 +6,12 @@
       - rsyslog
       - logrotate
 
+- name: Ensure that rsyslog is enabled and running
+  service:
+    name: rsyslog
+    state: started
+    enabled: yes
+
 - name: Create sympa log file
   file:
     dest: /var/log/sympa.log
