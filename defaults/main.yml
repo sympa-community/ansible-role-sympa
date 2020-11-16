@@ -99,8 +99,4 @@ sympa_web_nginx_snippet: |
     alias {{ sympa_installation_directory }}/static_content;
   }
 
-mhonarc_repository_url: https://github.com/sympa-community/MHonArc.git
-mhonarc_source_directory: /home/sympa/MHonArc
-mhonarc_repository_version: master
-
 sympa_install_odbc_driver: false

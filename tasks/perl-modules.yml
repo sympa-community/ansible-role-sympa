@@ -6,25 +6,15 @@
   import_role:
     name: cpanm-setup
 
-- name: Download Mhonarc sources
-  git:
-    repo: "{{ mhonarc_repository_url }}"
-    dest: "{{ mhonarc_source_directory }}"
-    force: yes
-    version: "{{ mhonarc_repository_version }}"
-  become_user: "{{ sympa_unix_user }}"
-  when: ansible_os_family == 'Suse'
+- name: Install MhonArc from CPAN
+  cpanm:
+    name: MHonArc::UTF8
+    version: 2.6.24
+    locallib: "/home/{{ sympa_unix_user }}/perl5"
+  become_user: "{{ cpanm_user }}"
   vars:
     ansible_ssh_pipelining: true
-
-- name: Install Mhonarc
-  command: perl install.me -binpath ~/perl5/bin/ -perl /usr/bin/perl -libpath ~/perl5/lib/perl5/ -nodoc -noman
-  args:
-    chdir: "{{ mhonarc_source_directory }}"
-  become_user: "{{ sympa_unix_user }}"
   when: ansible_os_family == 'Suse'
-  vars:
-    ansible_ssh_pipelining: true
 
 - name: Install module for Bcrypt support
   import_role:
