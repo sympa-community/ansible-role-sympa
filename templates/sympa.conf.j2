@@ -43,6 +43,14 @@ db_host {{ sympa_database.host }}
 db_port {{ sympa_database.port }}
 {% endif %}
 
+## Additional fields
+{% if sympa_config_additional_subscriber_fields %}
+db_additional_subscriber_fields {{ sympa_config_additional_subscriber_fields }}
+{% endif %}
+{% if sympa_config_additional_user_fields %}
+db_additional_user_fields {{ sympa_config_additional_user_fields }}
+{% endif %}
+
 # Security settings
 
 ## Switch off case sensitivity setting for passwords
