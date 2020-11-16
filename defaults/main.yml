@@ -29,10 +29,56 @@ sympa_services:
 
 sympa_config_etc: /etc/sympa
 sympa_config_log_level: 0
-sympa_config_password_hash: bcrypt
+sympa_config_password_hash: "{% if ansible_os_family != 'Alpine' %}bcrypt{% endif %}"
 sympa_config_password_case: sensitive
 sympa_config_sendmail: /usr/sbin/sendmail
 sympa_config_sendmail_aliases: /etc/mail/sympa/aliases
+
+sympa_email_exim_router_snippet: |
+  # Sympa router for list aliases
+  sympa_list_aliases:
+    debug_print = "R: sympa list aliases for $local_part@$domain"
+    driver = redirect
+    domains = {{ sympa_domain }}
+    allow_fail
+    allow_defer
+    data = ${lookup{$local_part}lsearch{/etc/mail/sympa/aliases}}
+    user = {{ sympa_unix_user }}
+    group = {{ sympa_unix_group }}
+    pipe_transport = address_pipe
+
+  # Sympa generic aliases for "sympa" and "listmaster"
+  sympa_queue_aliases:
+    debug_print = "R: sympa queue aliases for $local_part@$domain"
+    driver = accept
+    domains = {{ sympa_domain }}
+    local_parts = sympa : listmaster
+    transport = sympa_queue_transport
+    no_more
+
+  # Sympa generic aliases for "bounce" and "abuse-feedback-report"
+  sympa_bouncequeue_aliases:
+    debug_print = "R: sympa bouncequeue aliases for $local_part@$domain"
+    driver = accept
+    domains = {{ sympa_domain }}
+    local_parts = bounce : abuse-feedback-report
+    transport = sympa_bounce_queue_transport
+    no_more
+
+sympa_email_exim_transport_snippet: |
+  # Sympa transport for queue program
+  sympa_queue_transport:
+    driver = pipe
+    command = {{ sympa_installation_directory }}/bin/queue ${local_part}\@$domain
+    user = {{ sympa_unix_user }}
+    group = {{ sympa_unix_group }}
+
+  # Sympa transport for bouncequeue program
+  sympa_bounce_queue_transport:
+    driver = pipe
+    command = {{ sympa_installation_directory }}/bin/bouncequeue ${local_part}\@$domain
+    user = {{ sympa_unix_user }}
+    group = {{ sympa_unix_group }}
 
 sympa_lists: []
 sympa_web_authentication: []
