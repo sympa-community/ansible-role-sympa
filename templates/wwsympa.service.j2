@@ -17,6 +17,7 @@ Environment="FCGI_OPTS=-s /run/wwsympa/wwsympa.socket -M 0660 -G {{ sympa_web_un
 EnvironmentFile=-/etc/sysconfig/sympa
 RuntimeDirectory=wwsympa
 RuntimeDirectoryPreserve=yes
+Restart=always
 
 [Install]
 WantedBy=multi-user.target
