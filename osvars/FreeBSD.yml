@@ -2,3 +2,5 @@
 sympa_database_driver_mysql: p5-DBD-mysql
 sympa_database_driver_postgresql: p5-DBD-Pg
 sympa_database_driver_odbc: p5-DBD-ODBC
+
+sympa_cpanm_package: perl-App-cpanminus

@@ -2,36 +2,9 @@
 # Copyright (C) 2020 Stefan Hornburg (Racke) <racke@linuxia.de>
 # SPDX-License-Identifier: Artistic-2.0
 
-- name: Install Perl modules (Setup)
-  import_role:
-    name: cpanm-setup
+- name: Install cpanm
+  package:
+    name: "{{ sympa_cpanm_package }}"
 
-- name: Install MhonArc from CPAN
-  cpanm:
-    name: MHonArc::UTF8
-    version: 2.6.24
-    locallib: "/home/{{ sympa_unix_user }}/perl5"
-  become_user: "{{ cpanm_user }}"
-  vars:
-    ansible_ssh_pipelining: true
-  when: ansible_os_family == 'Suse'
-
-- name: Install module for Bcrypt support
-  import_role:
-    name: cpanm-apps
-    tasks_from: cpanm.yml
-  vars:
-    perlapp_modules_with_cpanm:
-      Crypt::Eksblowfish::Bcrypt:
-  when: sympa_config_password_hash == 'bcrypt'
-    
 - name: Install Perl modules
-  import_role:
-    name: cpanm-apps
-  vars:
-    cpanm_user: "{{ sympa_unix_user }}"
-    cpanm_create_makefile_pl: true
-    cpanm_apps:
-      sympa:
-        directory: "{{ sympa_source_directory }}"
-        create_makefile_pl: true
+  command: cpanm --notest --installdeps "{{ sympa_source_directory }}"

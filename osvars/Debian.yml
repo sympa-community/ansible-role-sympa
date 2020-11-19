@@ -3,3 +3,5 @@ sympa_database_driver_mysql: libdbd-mysql-perl
 sympa_database_driver_postgresql: libdbd-pg-perl
 sympa_database_driver_odbc: libdbd-odbc-perl
 sympa_web_unix_user: www-data
+
+sympa_cpanm_package: cpanminus
