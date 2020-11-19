@@ -2,6 +2,12 @@
 # Copyright (C) 2020 Stefan Hornburg (Racke) <racke@linuxia.de>
 # SPDX-License-Identifier: Artistic-2.0
 
+- name: Install standard packages for building Perl XS modules
+  package:
+    name:
+      - gcc
+      - make
+
 - name: Install cpanm
   package:
     name: "{{ sympa_cpanm_package }}"
