@@ -22,6 +22,7 @@
   package:
     name:
       - gcc
+      - make
       - autoconf
       - automake
       - "{% if ansible_os_family == 'Suse' %}gettext-tools{% elif ansible_os_family == 'RedHat' %}gettext-devel{% else %}gettext{% endif %}" 
