@@ -30,6 +30,7 @@ sympa_services:
 sympa_config_additional_subscriber_fields: ""
 sympa_config_additional_user_fields: ""
 sympa_config_etc: /etc/sympa
+sympa_config_lang: ""
 sympa_config_log_level: 0
 sympa_config_password_hash: "{% if ansible_os_family != 'Alpine' %}bcrypt{% endif %}"
 sympa_config_password_case: sensitive
