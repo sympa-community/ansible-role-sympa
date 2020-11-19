@@ -89,7 +89,7 @@
   import_tasks: syslog.yml
   when:
     - sympa_installation_method != 'package'
-    - ansible_os_family != 'FreeBSD'
+    - ansible_os_family not in ['Alpine', 'FreeBSD']
 
 - name: Create directory for file with list aliases
   file:
