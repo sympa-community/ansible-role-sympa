@@ -36,7 +36,6 @@
   copy:
     content: |
       [Service]
-      Environment=PERL5LIB=/home/{{ sympa_unix_user }}/perl5/lib/perl5
     dest: "/etc/systemd/system/wwsympa.service.d/10-locallib.conf"
     owner: root
     group: root

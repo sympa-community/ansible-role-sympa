@@ -35,9 +35,6 @@
   command: "{{ sympa_command }} --create_list --input_file=/home/{{ sympa_unix_user }}/{{ item.name }}.xml"
   with_items: "{{ sympa_lists }}"
   become_user: "{{ sympa_unix_user }}"
-  environment:
-     PERL5LIB: "/home/{{ sympa_unix_user }}/perl5/lib/perl5"
-     SYMPALIB: "/home/{{ sympa_unix_user }}/perl5/lib/perl5"
   vars:
     ansible_ssh_pipelining: true
   register: sympa_add_list_result

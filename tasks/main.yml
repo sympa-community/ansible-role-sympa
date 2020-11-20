@@ -148,8 +148,6 @@
   become_user: "{{ sympa_unix_user }}"
   vars:
     ansible_ssh_pipelining: true
-  environment:
-    PERL5LIB: "/home/{{ sympa_unix_user }}/perl5/lib/perl5"
   when:
     - sympa_installation_method != 'package'
 
@@ -181,7 +179,6 @@
   copy:
     content: |
       [Service] 
-      Environment=PERL5LIB=/home/{{ sympa_unix_user }}/perl5/lib/perl5
     dest: "/etc/systemd/system/{{ item }}.service.d/10-locallib.conf"
     owner: root
     group: root
