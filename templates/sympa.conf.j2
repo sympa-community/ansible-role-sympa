@@ -18,11 +18,6 @@ logo_html_definition {{ sympa_config_logo_html_definition | replace('\n', ' ') }
 {% endif %}
 {% endif %}
 
-{% if ansible_os_family == 'Suse' %}
-# Archiving
-mhonarc /home/{{ sympa_unix_user }}/perl5/bin/mhonarc
-{% endif %}
-
 # Logging
 log_level {{ sympa_config_log_level }}
 
