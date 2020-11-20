@@ -20,6 +20,8 @@ sympa_source_url: "https://github.com/sympa-community/sympa/releases/download/{{
 sympa_source_version: 6.2.58
 sympa_source_patches: []
 
+sympa_cpanm_features: []
+
 sympa_services:
   - sympa
   - sympa-archive
@@ -36,6 +38,8 @@ sympa_config_password_hash: "{% if ansible_os_family == 'Alpine' %}md5{% else %}
 sympa_config_password_case: sensitive
 sympa_config_sendmail: /usr/sbin/sendmail
 sympa_config_sendmail_aliases: /etc/mail/sympa/aliases
+
+sympa_config_dkim_feature: false
 
 sympa_email_exim_router_snippet: |
   # Sympa router for list aliases
