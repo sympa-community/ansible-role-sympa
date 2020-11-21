@@ -32,22 +32,11 @@
   with_items: "{{ sympa_services }}"
   when: ansible_service_mgr == "systemd"
 
-- name: Add drop in file for systemd
-  copy:
-    content: |
-      [Service]
-    dest: "/etc/systemd/system/wwsympa.service.d/10-locallib.conf"
-    owner: root
-    group: root
-    mode: 0644
-  register: wwsympa_service_dropin
-  when: ansible_service_mgr == "systemd"
-
 - name: Reload systemd if necessary
   systemd:
     daemon_reload: yes
   when:
-    - wwsympa_unit_file.changed or wwsympa_service_dropin.changed
+    - wwsympa_unit_file.changed
 
 - name: Ensure that WWSympa is enabled and started
   service:
