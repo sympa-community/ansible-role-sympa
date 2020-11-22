@@ -41,6 +41,8 @@ sympa_config_sendmail_aliases: /etc/mail/sympa/aliases
 
 sympa_config_dkim_feature: false
 
+sympa_syslog_rotations: 52
+
 sympa_email_exim_router_snippet: |
   # Sympa router for list aliases
   sympa_list_aliases:

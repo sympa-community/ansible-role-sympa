@@ -2,7 +2,10 @@
 /var/log/sympa.log {
        missingok
        notifempty
-       rotate 52
+       rotate {{ sympa_syslog_rotations }}
+{% if sympa_syslog_size is defined %}
+       size={{ sympa_syslog_size }}
+{% endif %}
        compress
        delaycompress
 	   copytruncate
