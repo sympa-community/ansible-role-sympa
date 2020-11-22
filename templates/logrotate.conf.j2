@@ -8,7 +8,6 @@
 	   copytruncate
 	   create 660 {{ sympa_unix_user }} {{ sympa_unix_group }}
        postrotate
-               invoke-rc.d --quiet sympa reload > /dev/null
-               invoke-rc.d --quiet rsyslog reload > /dev/null || true
+           service rsyslog restart
        endscript
 }
