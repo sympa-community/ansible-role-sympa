@@ -22,16 +22,6 @@
     - sympa
     - wwsympa
 
-- name: Create directory for systemd dropin file
-  file:
-    state: directory
-    path: "/etc/systemd/system/wwsympa.service.d"
-    owner: root
-    group: root
-    mode: 0755
-  with_items: "{{ sympa_services }}"
-  when: ansible_service_mgr == "systemd"
-
 - name: Reload systemd if necessary
   systemd:
     daemon_reload: yes
