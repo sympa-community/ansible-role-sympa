@@ -172,6 +172,8 @@
   when:
     - ansible_service_mgr == "systemd"
     - sympa_service_unit.changed
+  tags:
+    - sympa
 
 - name: Ensure that Sympa is enabled and started
   service:
