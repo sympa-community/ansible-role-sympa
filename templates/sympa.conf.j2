@@ -16,6 +16,8 @@ wwsympa_url {{ sympa_web_fcgi_protocol }}://{{ sympa_domain }}/sympa
 {% if sympa_config_logo_html_definition is defined %}
 logo_html_definition {{ sympa_config_logo_html_definition | replace('\n', ' ') }}
 {% endif %}
+## Shared feature
+shared_feature {{ sympa_config_shared_feature }}
 {% endif %}
 
 # Logging
