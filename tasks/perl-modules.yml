@@ -12,10 +12,17 @@
   package:
     name: "{{ sympa_cpanm_package }}"
 
+- name: Install Expat development library needed for SOAP interface
+  package:
+    name:
+      - "{{ sympa_expatdev_package }}" # XML::Parser
+      - "{{ sympa_zlibdev_package }}" # IO::Socket::SSL
+  when: sympa_soap_fcgi_enabled
+
 - name: Install SSL development library
   package:
     name: "{{ sympa_openssldev_package }}"
-  when: sympa_config_dkim_feature
+  when: sympa_config_dkim_feature or sympa_soap_fcgi_enabled
 
 - name: Add Mail::DKIM::Verifier to features if DKIM support is requested
   set_fact:
@@ -26,6 +33,11 @@
   set_fact:
     sympa_cpanm_features: "{{ sympa_cpanm_features + ['Crypt::Eksblowfish'] }}"
   when: sympa_config_password_hash == 'bcrypt'
+
+- name: Add SOAP to features if SOAP interface is enabled
+  set_fact:
+    sympa_cpanm_features: "{{ sympa_cpanm_features + ['soap'] }}"
+  when: sympa_soap_fcgi_enabled
 
 - name: Install Perl modules
   command: "cpanm --notest --installdeps {{ sympa_source_directory }}{% for feature in sympa_cpanm_features %}  --with-feature {{ feature }}{% endfor %}"

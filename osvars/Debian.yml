@@ -6,3 +6,5 @@ sympa_web_unix_user: www-data
 
 sympa_cpanm_package: cpanminus
 sympa_openssldev_package: libssl-dev
+sympa_expatdev_package: libexpat1-dev
+sympa_zlibdev_package: zlib1g-dev

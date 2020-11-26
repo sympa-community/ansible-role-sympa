@@ -33,6 +33,12 @@
     state: restarted
   when: sympa_web_fcgi_enabled
 
+- name: restart sympasoap
+  systemd:
+    name: sympasoap
+    state: restarted
+  when: sympa_soap_fcgi_enabled
+
 - name: restart rsyslog
   systemd:
     name: rsyslog

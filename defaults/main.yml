@@ -96,6 +96,8 @@ sympa_web_authentication: []
 
 sympa_web_fcgi_enabled: true
 sympa_web_fcgi_protocol: https
+sympa_soap_fcgi_enabled: false
+sympa_soap_fcgi_protocol: https
 
 sympa_web_nginx_snippet: |
   location = / {
@@ -108,6 +110,12 @@ sympa_web_nginx_snippet: |
 
   location /static-sympa {
     alias {{ sympa_installation_directory }}/static_content;
+  }
+
+sympa_soap_nginx_snippet: |
+  location /sympasoap {
+    include       /etc/nginx/fastcgi_params;
+    fastcgi_pass  unix:/run/sympasoap/sympasoap.socket;
   }
 
 sympa_install_odbc_driver: false

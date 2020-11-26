@@ -1,0 +1,38 @@
+---
+# Copyright (C) 2020 Stefan Hornburg (Racke) <racke@linuxia.de>
+# SPDX-License-Identifier: Artistic-2.0
+
+- name: Install FCGI wrapper
+  package:
+    name: spawn-fcgi
+  tags:
+    - sympa
+    - sympasoap
+
+- name: Create systemd unit for Sympasoap
+  template:
+    src: sympasoap.service.j2
+    dest: /etc/systemd/system/sympasoap.service
+    owner: root
+    group: root
+    mode: 0644
+  register: sympasoap_unit_file
+  notify: restart sympasoap
+  tags:
+    - sympa
+    - sympasoap
+
+- name: Reload systemd if necessary
+  systemd:
+    daemon_reload: yes
+  when:
+    - sympasoap_unit_file.changed
+
+- name: Ensure that Sympasoap is enabled and started
+  service:
+    name: sympasoap
+    enabled: yes
+    state: started
+  tags:
+    - sympa
+    - sympasoap

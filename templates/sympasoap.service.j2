@@ -1,0 +1,23 @@
+[Unit]
+Description=Sympasoap - Web interface for Sympa mailing list manager
+After=syslog.target
+BindTo=sympa.service
+ 
+[Service]
+Type=forking
+PIDFile=/run/sympasoap/sympasoap.pid
+ExecStart=/usr/bin/spawn-fcgi -F $FCGI_CHILDREN \
+    -P /run/sympasoap/sympasoap.pid \
+    -u $FCGI_USER -g $FCGI_GROUP $FCGI_OPTS -- \
+    {{ sympa_installation_directory }}/bin/sympa_soap_server.fcgi
+Environment="FCGI_CHILDREN=5"
+Environment="FCGI_USER={{ sympa_unix_user }}"
+Environment="FCGI_GROUP={{ sympa_unix_group }}"
+Environment="FCGI_OPTS=-s /run/sympasoap/sympasoap.socket -M 0660 -G {{ sympa_web_unix_user }}"
+EnvironmentFile=-/etc/sysconfig/sympa
+RuntimeDirectory=sympasoap
+RuntimeDirectoryPreserve=yes
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

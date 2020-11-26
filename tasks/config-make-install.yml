@@ -69,6 +69,7 @@
   notify:
     - restart sympa
     - restart wwsympa
+    - restart sympasoap
 
 - name: Set variable for Sympa command
   set_fact:

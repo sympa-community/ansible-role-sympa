@@ -124,6 +124,7 @@
   notify:
     - restart sympa
     - restart wwsympa
+    - restart sympasoap
   tags:
     - sympa
     - sympa-conf
@@ -139,6 +140,7 @@
   notify:
     - restart sympa
     - restart wwsympa
+    - restart sympasoap
   tags:
     - sympa
     - sympa-conf
@@ -192,3 +194,6 @@
   import_tasks: wwsympa.yml
   when: sympa_web_fcgi_enabled
     
+- name: SOAP
+  import_tasks: soap.yml
+  when: sympa_soap_fcgi_enabled
