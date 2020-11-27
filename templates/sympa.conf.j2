@@ -5,7 +5,7 @@ domain {{ sympa_domain }}
 # Listmaster
 
 {% if sympa_listmaster is defined %}
-listmaster {% if sympa_listmaster is iterable %}{{ sympa_listmaster | join(',') }}{% else %}{{ sympa_listmaster }}{% endif %}
+listmaster {% if sympa_listmaster is string %}{{ sympa_listmaster }}{% else %}{{ sympa_listmaster | join(',') }}{% endif %}
 {% else %}
 listmaster listmaster@{{ sympa_domain }}
 {% endif %}
