@@ -69,6 +69,8 @@ sendmail {{ sympa_config_sendmail }}
 ## Aliases
 sendmail_aliases {{ sympa_config_sendmail_aliases }}
 
+alias_manager {{ sympa_config_alias_manager }}
+
 {% if sympa_config_aliases_program is defined %}
 aliases_program {{ sympa_config_aliases_program }}
 {% endif %}
