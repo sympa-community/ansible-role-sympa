@@ -112,6 +112,22 @@ Location of the global file with the list aliases. Defaults to `/etc/mail/sympa/
 Program to update the hash file for the aliases. Select `postalias` for using
 Sympa with Postfix MTA.
 
+### Languages
+
+### *sympa_config_lang*
+
+Configures the default language:
+
+  sympa_config_lang: de
+  
+### *sympa_config_supported_lang*
+
+Configures the supported languages:
+
+  sympa_config_supported_lang: de,en_US
+
+You can also use a list instead of a comma separated string.
+
 ### WWSympa
 
 #### *sympa_web_fcgi_enabled*
