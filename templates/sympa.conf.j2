@@ -60,6 +60,9 @@ password_hash {{ sympa_config_password_hash }}
 {% if sympa_config_lang %}
 lang {{ sympa_config_lang }}
 {% endif %}
+{% if sympa_config_supported_lang %}
+supported_lang {% if sympa_config_supported_lang is string %}{{ sympa_config_supported_lang }}{% else %}{{ sympa_config_supported_lang | join(',') }}{% endif %}
+{% endif %}
 
 # Email distribution settings
 
