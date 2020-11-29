@@ -57,7 +57,12 @@ For example: *listmaster@lists.example.com*.
 
 ### Installation
 
-You can pick from different installation methods.
+You can pick from different installation methods through the
+*sympa_installation_method* variable:
+
+    - *source*: install from tarball
+    - *repository*: install from Git repository
+    - *sync*: install from directory on the controller 
 
 #### *sympa_source_directory*
 
