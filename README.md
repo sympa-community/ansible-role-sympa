@@ -3,13 +3,6 @@
 Role to install [Sympa](https://github.com/sympa-community/sympa). It
 doesn't support robots for now, this feature will be added later.
 
-## Problems
-
- /home/sympa/bin/sympa.pl --create_list --input_file=/home/sympa/test.xml
-
-Can't locate MIME/EncWords.pm in @INC (you may need to install the
-MIME::EncWords module) 
-
 ## Requirements
 
 Local MTA. This is installed by most distributions.
