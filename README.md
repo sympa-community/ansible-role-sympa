@@ -99,6 +99,14 @@ Sympa version, defaults to *6.2.58*.
 Sympa download location. The default value includes *sympa_source_version*,
 e.g. https://github.com/sympa-community/sympa/releases/download/6.2.58/sympa-6.2.58.tar.gz.
 
+##### *sympa_source_patches*
+
+List of patches which will be applied before building, e.g.:
+
+    sympa_source_patches:
+      - patches/soap-api-access-fix.diff
+      - patches/disable-setuid-1032.diff
+
 ### Aliases
 
 #### *sympa_config_sendmail_aliases*
