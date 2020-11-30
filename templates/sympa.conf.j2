@@ -86,3 +86,6 @@ aliases_program {{ sympa_config_aliases_program }}
 {% if sympa_config_aliases_wrapper is defined %}
 aliases_wrapper {{ sympa_config_aliases_wrapper }}
 {% endif %}
+
+# Archiving
+process_archive {{ sympa_config_process_archive | bool | ternary('on', 'off') }}
