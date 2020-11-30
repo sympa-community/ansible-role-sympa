@@ -87,5 +87,10 @@ aliases_program {{ sympa_config_aliases_program }}
 aliases_wrapper {{ sympa_config_aliases_wrapper }}
 {% endif %}
 
+## Incoming email
+{% if sympa_config_max_size is defined %}
+max_size {{ sympa_config_max_size }}
+{% endif %}
+
 # Archiving
 process_archive {{ sympa_config_process_archive | bool | ternary('on', 'off') }}
