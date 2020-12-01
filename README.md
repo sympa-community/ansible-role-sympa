@@ -32,6 +32,17 @@ configuration file.
 In order to the necessary ODBC DBI driver, set the
 *sympa_install_odbc_driver* variable to "yes".
 
+### Variables
+
+#### *sympa_default_config_ttl*
+
+Default time interval between two scheduled synchronizations.
+
+#### *sympa_default_config_distribution_ttl*
+
+Default time interval to trigger a synchronization by an action,
+e.g. distributing an email.
+
 ## Variables
 
 The database configuration for Sympa is required.
