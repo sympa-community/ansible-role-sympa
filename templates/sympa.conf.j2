@@ -53,6 +53,14 @@ db_additional_subscriber_fields {{ sympa_config_additional_subscriber_fields }}
 db_additional_user_fields {{ sympa_config_additional_user_fields }}
 {% endif %}
 
+# Data sources and synchronizations
+{% if sympa_config_default_ttl is defined %}
+default_ttl {{ sympa_config_default_ttl }}
+{% endif %}
+{% if sympa_config_default_distribution_ttl is defined %}
+default_distribution_ttl {{ sympa_config_default_distribution_ttl }}
+{% endif %}
+
 # Security settings
 
 ## Switch off case sensitivity setting for passwords
