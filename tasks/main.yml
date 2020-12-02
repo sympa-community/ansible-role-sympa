@@ -146,6 +146,20 @@
     - sympa
     - sympa-conf
 
+- name: Create configuration file create_list.conf
+  template:
+    src: create_list.conf.j2
+    dest: /etc/sympa/create_list.conf
+    owner: "{{ sympa_unix_user }}"
+    group: "{{ sympa_unix_group }}"
+    mode: 0640
+  when: sympa_web_fcgi_enabled
+  notify:
+    - restart wwsympa
+  tags:
+    - sympa
+    - sympa-conf
+
 - name: Run upgrade command
   command: "{{ sympa_command }} --upgrade"
   become_user: "{{ sympa_unix_user }}"
