@@ -1,0 +1,15 @@
+## You can customize this configuration file to hide some create_list templates
+## from the create_list web page
+
+## The configuration file is made of unordered lines, each composed of a create_list_template name and read|hidden
+## You can also set a default behavior with the 'default' keyword
+
+# Default templates location: {{ sympa_installation_directory }}/default/create_list_templates
+# Custom templates location: {{ sympa_configuration_directory }}/create_list_templates
+
+default {{ sympa_web_create_list_default }}
+
+{% for template in sympa_web_create_list_templates %}
+{{ template }} {% if sympa_web_create_list_default == 'read' %}hidden{% else %}read{% endif %}
+
+{% endfor %}
