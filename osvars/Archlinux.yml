@@ -1,0 +1,11 @@
+---
+sympa_database_driver_mysql: perl-dbd-mysql
+sympa_database_driver_postgresql: perl-dbd-pg
+sympa_database_driver_odbc: perl-dbd-odbc
+sympa_web_unix_user: http
+
+sympa_cpanm_package: cpanminus
+sympa_cpanm_program: /usr/bin/vendor_perl/cpanm
+sympa_openssldev_package: openssl
+sympa_expatdev_package: expat
+sympa_zlibdev_package: zlib
