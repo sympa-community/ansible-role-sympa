@@ -3,6 +3,14 @@
 Role to install [Sympa](https://github.com/sympa-community/sympa). It
 doesn't support robots for now, this feature will be added later.
 
+Supported platforms are:
+
+* Arch Linux
+* CentOS 8
+* Debian 10 (Buster)
+* Ubuntu 18 (Bionic)
+* Ubuntu 22 (Groovy)
+
 ## Requirements
 
 Local MTA. This is installed by most distributions.
