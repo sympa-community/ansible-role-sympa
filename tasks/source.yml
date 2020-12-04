@@ -14,6 +14,11 @@
     name: tar
   when: ansible_os_family == 'Alpine'
 
+- name: Install GNU tar on FreeBSD
+  package:
+    name: gtar
+  when: ansible_os_family == 'FreeBSD'
+
 - name: Unpack the tarball
   unarchive:
     src: "{{ sympa_source_directory }}/sympa-{{ sympa_source_version }}.tar.gz"
