@@ -3,4 +3,9 @@ sympa_database_driver_mysql: p5-DBD-mysql
 sympa_database_driver_postgresql: p5-DBD-Pg
 sympa_database_driver_odbc: p5-DBD-ODBC
 
-sympa_cpanm_package: perl-App-cpanminus
+sympa_cpanm_package: p5-App-cpanminus
+sympa_cpanm_program: /usr/local/bin/cpanm
+
+sympa_make_package: gmake
+sympa_expatdev_package: expat
+sympa_zlibdev_package: zlib
