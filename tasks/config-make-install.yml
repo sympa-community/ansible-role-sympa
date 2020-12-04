@@ -22,7 +22,7 @@
   package:
     name:
       - gcc
-      - make
+      - "{{ sympa_make_package }}"
       - autoconf
       - automake
       - "{% if ansible_os_family == 'Suse' %}gettext-tools{% elif ansible_os_family == 'RedHat' %}gettext-devel{% elif ansible_os_family == 'Alpine' %}gettext-dev{% else %}gettext{% endif %}"

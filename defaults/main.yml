@@ -22,6 +22,7 @@ sympa_source_patches: []
 
 sympa_cpanm_program: /usr/bin/cpanm
 sympa_cpanm_features: []
+sympa_make_package: make
 
 sympa_services:
   - sympa

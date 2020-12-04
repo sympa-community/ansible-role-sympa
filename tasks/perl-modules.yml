@@ -6,7 +6,7 @@
   package:
     name:
       - gcc
-      - make
+      - "{{ sympa_make_package }}"
 
 - name: Install cpanm
   package:
