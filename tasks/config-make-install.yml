@@ -36,6 +36,14 @@
     ansible_ssh_pipelining: true  
   when: sympa_installation_method != 'source' or sympa_source_patches | count
 
+- name: Add symlink for pod2man on Arch Linux
+  file:
+    state: link
+    src: "/usr/bin/core_perl/pod2man"
+    dest: "/usr/local/bin/pod2man"
+  become: yes
+  when: ansible_os_family == 'Archlinux'
+
 - name: Configure Sympa
   command: |
     ./configure --prefix="{{ sympa_installation_directory }}" --with-lockdir=/var/lock
