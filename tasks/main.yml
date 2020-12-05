@@ -83,18 +83,6 @@
   when: sympa_installation_method != 'package'
   notify: restart sympa
 
-- name: Determine whether sendmail binary exists
-  command: which sendmail
-  failed_when: sympa_sendmail_results.rc not in [0,1]
-  register: sympa_sendmail_results
-
-- name: Install MTA with sendmail binary
-  package:
-    name: postfix
-  when:
-    - not ansible_check_mode
-    - sympa_sendmail_results.rc == 1
-
 - name: Enable syslog
   import_tasks: syslog.yml
   when:
