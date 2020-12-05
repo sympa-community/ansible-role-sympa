@@ -12,6 +12,13 @@
   package:
     name: "{{ sympa_cpanm_package }}"
 
+- name: Workaround for XML::LibXML installation problem on CentOS 7
+  package:
+    name: perl-XML-LibXML
+  when:
+    - ansible_distribution == 'CentOS'
+    - ansible_distribution_major_version == '7'
+
 - name: Install Expat development library needed for SOAP interface
   package:
     name:
