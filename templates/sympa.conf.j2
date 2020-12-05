@@ -34,7 +34,9 @@ etc {{ sympa_config_etc }}
 # Database configuration
 db_type {{ sympa_database.type }}
 db_name {{ sympa_database.name }}
+{% if 'user' in sympa_database %}
 db_user {{ sympa_database.user }}
+{% endif %}
 {% if 'password' in sympa_database %}
 db_passwd {{ sympa_database.password }}
 {% endif %}

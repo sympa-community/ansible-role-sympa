@@ -1,6 +1,7 @@
 ---
 sympa_database_driver_mysql: perl-dbd-mysql
 sympa_database_driver_postgresql: perl-dbd-pg
+sympa_database_driver_sqlite: perl-dbd-sqlite
 sympa_database_driver_odbc: perl-dbd-odbc
 sympa_web_unix_user: http
 

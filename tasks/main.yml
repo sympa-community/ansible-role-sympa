@@ -55,6 +55,16 @@
     - sympa
     - sympa-database-driver
 
+- name: Install database driver for Perl (SQLite3)
+  package:
+    name: "{{ sympa_database_driver_sqlite }}"
+  when:
+    - sympa_installation_method != 'package'
+    - sympa_database.type == 'SQLite'
+  tags:
+    - sympa
+    - sympa-database-driver
+
 - name: Install database driver for ODBC
   package:
     name: "{{ sympa_database_driver_odbc }}"
