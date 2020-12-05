@@ -1,0 +1,12 @@
+---
+sympa_database_driver_mysql: dev-perl/DBD-mysql
+sympa_database_driver_postgresql: dev-perl/DBD-Pg
+sympa_database_driver_sqlite: dev-perl/DBD-SQLite
+# not available
+sympa_database_driver_odbc: dev-perl/DBD-ODBC
+sympa_web_unix_user: nginx
+
+sympa_cpanm_package: dev-perl/App-cpanminus
+sympa_openssldev_package: libressl-dev
+sympa_expatdev_package: expat-dev
+sympa_zlibdev_package: zlib-dev
