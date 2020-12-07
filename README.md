@@ -6,9 +6,16 @@ doesn't support robots for now, this feature will be added later.
 Supported platforms are:
 
 * Arch Linux
+* CentOS 7
 * CentOS 8
+* Debian 8 (Jessie)
+* Debian 9 (Stretch)
 * Debian 10 (Buster)
+* Fedora 31
+* openSUSE Leap 15
+* Ubuntu 16 (Xenial)
 * Ubuntu 18 (Bionic)
+* Ubuntu 20 (Focal)
 * Ubuntu 22 (Groovy)
 
 ## Requirements
