@@ -197,7 +197,6 @@
     name: sympa
     enabled: yes
     state: started
-  with_items: sympa
   tags:
     - sympa
 
