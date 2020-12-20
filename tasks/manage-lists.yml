@@ -38,6 +38,9 @@
   vars:
     ansible_ssh_pipelining: true
   register: sympa_add_list_result
+  failed_when:
+    - sympa_add_list_result.rc == 1
+    - sympa_add_list_result.stderr is not search('list already exists')
 
 - debug:
     var: sympa_add_list_result
