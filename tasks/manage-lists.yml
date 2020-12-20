@@ -20,10 +20,6 @@
         <listname>{{ item.name }}</listname>
       </list>
   with_items: "{{ sympa_lists }}"
-  
-- name: Display XML
-  debug:
-    var: sympa_list_xmlstring
 
 - name: Save XML as file
   copy:
@@ -41,6 +37,3 @@
   failed_when:
     - sympa_add_list_result.rc == 1
     - sympa_add_list_result.stderr is not search('list already exists')
-
-- debug:
-    var: sympa_add_list_result
