@@ -13,9 +13,9 @@ ExecStart=/usr/bin/spawn-fcgi -F $FCGI_CHILDREN \
 Environment="FCGI_CHILDREN=5"
 Environment="FCGI_USER={{ sympa_unix_user }}"
 Environment="FCGI_GROUP={{ sympa_unix_group }}"
-Environment="FCGI_OPTS=-s /run/wwsympa/wwsympa.socket -M 0660 -G {{ sympa_web_unix_user }}"
+Environment="FCGI_OPTS=-s {{ sympa_web_fcgi_socket }} -M 0660 -G {{ sympa_web_unix_user }}"
 EnvironmentFile=-/etc/sysconfig/sympa
-RuntimeDirectory=wwsympa
+RuntimeDirectory={{ sympa_web_fcgi_socket.split('/')[2] }}
 RuntimeDirectoryPreserve=yes
 Restart=always
 

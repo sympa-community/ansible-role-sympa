@@ -102,6 +102,8 @@ sympa_web_authentication: []
 
 sympa_web_fcgi_enabled: true
 sympa_web_fcgi_protocol: https
+sympa_web_fcgi_socket: "/run/sympa/wwsympa.socket"
+
 sympa_soap_fcgi_enabled: false
 sympa_soap_fcgi_protocol: https
 
@@ -111,7 +113,7 @@ sympa_web_nginx_snippet: |
   }
   location /sympa {
     include fastcgi_params;
-    fastcgi_pass  unix:/run/wwsympa/wwsympa.socket;
+    fastcgi_pass  unix:{{ sympa_web_fcgi_socket }};
   }
 
   location /static-sympa {
