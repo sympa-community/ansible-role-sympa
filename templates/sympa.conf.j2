@@ -102,5 +102,10 @@ aliases_wrapper {{ sympa_config_aliases_wrapper }}
 max_size {{ sympa_config_max_size }}
 {% endif %}
 
+## Personalization
+{% if sympa_config_merge_feature is defined %}
+merge_feature {{ sympa_config_merge_feature | bool | ternary('on', 'off') }}
+{% endif %}
+
 # Archiving
 process_archive {{ sympa_config_process_archive | bool | ternary('on', 'off') }}
