@@ -160,6 +160,15 @@ Configures the supported languages:
 
 You can also use a list instead of a comma separated string.
 
+### Personalization
+
+You can enable personalization for all lists with:
+
+  sympa_config_merge_feature: true
+  
+This is not recommended though unless all lists use that feature.
+You can enable it for individual lists in the list configuration.
+
 ### WWSympa
 
 #### *sympa_web_fcgi_enabled*
