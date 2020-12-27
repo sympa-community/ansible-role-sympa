@@ -76,7 +76,7 @@ Example:
 
 This is either a list of listmasters or a single value for the listmaster.
 
-If no value is provided, =listmaster= will be joined with a @ to the
+If no value is provided, `listmaster` will be joined with a @ to the
 *sympa_domain* variable.
 
 For example: *listmaster@lists.example.com*.
