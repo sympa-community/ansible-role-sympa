@@ -90,6 +90,9 @@
     owner: root
     group: root
     mode: '755'
+  when:
+    - ansible_distribution == 'CentOS'
+    - ansible_distribution_major_version|int == 8
 
 - name: Install alias for Sympa command
   file:
