@@ -10,7 +10,7 @@ ExecStart=/usr/bin/spawn-fcgi -F $FCGI_CHILDREN \
     -P /run/sympasoap/sympasoap.pid \
     -u $FCGI_USER -g $FCGI_GROUP $FCGI_OPTS -- \
     {{ sympa_installation_directory }}/bin/sympa_soap_server.fcgi
-Environment="FCGI_CHILDREN=5"
+Environment="FCGI_CHILDREN={{ sympa_soap_fcgi_instances }}"
 Environment="FCGI_USER={{ sympa_unix_user }}"
 Environment="FCGI_GROUP={{ sympa_unix_group }}"
 Environment="FCGI_OPTS=-s /run/sympasoap/sympasoap.socket -M 0660 -G {{ sympa_web_unix_user }}"

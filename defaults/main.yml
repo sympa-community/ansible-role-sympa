@@ -104,8 +104,10 @@ sympa_web_fcgi_enabled: true
 sympa_web_fcgi_protocol: https
 sympa_web_fcgi_socket: "/run/sympa/wwsympa.socket"
 
+sympa_web_fcgi_instances: 5
 sympa_soap_fcgi_enabled: false
 sympa_soap_fcgi_protocol: https
+sympa_soap_fcgi_instances: 5
 
 sympa_web_nginx_snippet: |
   location = / {
