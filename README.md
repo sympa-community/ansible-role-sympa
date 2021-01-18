@@ -175,6 +175,24 @@ You can enable it for individual lists in the list configuration.
 
 Whether WWSympa is enabled (default).
 
+#### *sympa_web_fcgi_instances*
+
+Number of FCGI instances (default: 5)
+
+Recommended value for development instances is 2.
+
+### SOAP
+
+#### *sympa_soap_fcgi_enabled*
+
+Whether SOAP is enabled (disabled by default).
+
+#### *sympa_soap_fcgi_instances*
+
+Number of FCGI instances (default: 5)
+
+Recommended value for development instances is 2.
+
 ## Dependencies
 
 None.
