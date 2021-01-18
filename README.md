@@ -118,7 +118,7 @@ binaries are a security risk.
 
 ##### *sympa_source_version*
 
-Sympa version, defaults to *6.2.58*.
+Sympa version, defaults to *6.2.60*.
 
 ##### *sympa_source_url*
 
