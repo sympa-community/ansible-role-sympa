@@ -47,5 +47,31 @@
   package:
     name: sympa
   become: yes
+  when: sympa_package_file is not defined
+  register: sympa_package_distribution_results
+  tags:
+    - sympa
+
+- name: Create temporary directory for package file
+  tempfile:
+    state: directory
+  register: sympa_tempdir
+  when: sympa_package_file is defined
+  tags:
+    - sympa
+
+- name: Copy package file to target
+  copy:
+    src: "{{ sympa_package_file }}"
+    dest: "{{ sympa_tempdir.path }}/{{ sympa_package_file | basename }}"
+  when: sympa_package_file is defined
+  tags:
+    - sympa
+
+- name: Install Sympa from package file (Debian)
+  apt:
+    deb: "{{ sympa_tempdir.path }}/{{ sympa_package_file | basename }}"
+  when: sympa_package_file is defined
+  register: sympa_package_file_results
   tags:
     - sympa
