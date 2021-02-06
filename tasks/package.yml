@@ -2,6 +2,47 @@
 # Copyright (C) 2020 Stefan Hornburg (Racke) <racke@linuxia.de>
 # SPDX-License-Identifier: Artistic-2.0
 
+- name: Preseed values for installation
+  debconf:
+    name: "sympa"
+    question: "{{ item.name | default('sympa') }}/{{ item.question }}"
+    value: "{{ item.value }}"
+    vtype: "{{ item.type | default('string') }}"
+  with_items:
+    - question: "listmaster"
+      value: "{% if sympa_listmaster is string %}{{ sympa_listmaster }}{% else %}{{ sympa_listmaster | join(',') }}{% endif %}"
+    - question: "hostname"
+      value: "{{ sympa_domain }}"
+    - name: wwsympa
+      question: "wwsympa_url"
+      value: "http://{{ sympa_domain }}/sympa"
+  when: ansible_os_family == 'Debian'
+  register: ansible_debconf_preseed
+  tags:
+    - debconf
+    - preseed
+
+- name: Ensure that dbconfig is installed
+  apt:
+    name: dbconfig-common
+  when: ansible_os_family == 'Debian'
+  tags:
+    - debconf
+    - dbconfig
+
+- name: Create configuration file for dbconfig
+  template:
+    src: dbconfig-common.j2
+    dest: /etc/dbconfig-common/sympa.conf
+    owner: root
+    group: root
+    mode: 0600
+  register: sympa_dbconfig_results
+  when: ansible_os_family == 'Debian'
+  tags:
+    - debconf
+    - dbconfig
+
 - name: Install Sympa from distribution package
   package:
     name: sympa
