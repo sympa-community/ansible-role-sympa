@@ -12,6 +12,13 @@
   package:
     name: "{{ sympa_cpanm_package }}"
 
+- name: Add development packages for Alpine
+  package:
+    name:
+      - perl-dev
+      - libc-dev
+  when: ansible_os_family == 'Alpine'
+
 - name: Workaround for XML::LibXML installation problem on CentOS 7
   package:
     name: perl-XML-LibXML
