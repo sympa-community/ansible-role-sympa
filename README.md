@@ -144,6 +144,14 @@ Location of the global file with the list aliases. Defaults to `/etc/mail/sympa/
 Program to update the hash file for the aliases. Select `postalias` for using
 Sympa with Postfix MTA.
 
+### Incoming messages
+
+#### *sympa_config_max_size*
+
+Maximum size of an incoming message in bytes.
+
+Sympa's default is 5242880 (5 MB).
+
 ### Languages
 
 ### *sympa_config_lang*
