@@ -144,6 +144,28 @@ Location of the global file with the list aliases. Defaults to `/etc/mail/sympa/
 Program to update the hash file for the aliases. Select `postalias` for using
 Sympa with Postfix MTA.
 
+### Database
+
+#### Additional fields
+
+Additional fields for the subscriber and user tables can be configured with
+the *sympa_config_additional_subscriber_fields* and
+*sympa_config_additional_user_fields* variables.
+
+    sympa_config_additional_subscriber_fields: unsubscribe_link
+
+You have to create these fields separately, e.g.:
+
+    - name: Add unsubscribe_link field to subscriber table
+      postgresql_query:
+        db: sympa
+        query: 'ALTER TABLE subscriber_table ADD COLUMN IF NOT EXISTS
+            unsubscribe_link text'
+      become: yes
+      become_user: postgres
+      vars:
+        ansible_ssh_pipelining: true
+    
 ### Incoming messages
 
 #### *sympa_config_max_size*
