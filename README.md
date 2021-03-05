@@ -211,6 +211,10 @@ Number of FCGI instances (default: 5)
 
 Recommended value for development instances is 2.
 
+#### *sympa_config_title*
+
+Title for the web interface.
+
 ### SOAP
 
 #### *sympa_soap_fcgi_enabled*

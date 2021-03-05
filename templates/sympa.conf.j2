@@ -13,6 +13,9 @@ listmaster listmaster@{{ sympa_domain }}
 {% if sympa_web_fcgi_enabled %}
 # Web interface
 wwsympa_url {{ sympa_web_fcgi_protocol }}://{{ sympa_domain }}/sympa
+{% if sympa_config_title is defined %}
+title {{ sympa_config_title }}
+{% endif %}
 {% if sympa_config_logo_html_definition is defined %}
 logo_html_definition {{ sympa_config_logo_html_definition | replace('\n', ' ') }}
 {% endif %}
