@@ -158,6 +158,11 @@
     - sympa
     - sympa-conf
 
+- name: Add custom list templates
+  import_tasks: create-list-templates.yml
+  tags:
+    - sympa
+
 - name: Run upgrade command
   command: "{{ sympa_command }} --upgrade"
   become_user: "{{ sympa_unix_user }}"

@@ -1,0 +1,21 @@
+---
+# Copyright (C) 2020 Stefan Hornburg (Racke) <racke@linuxia.de>
+# SPDX-License-Identifier: Artistic-2.0
+
+- name: Create directory
+  file:
+    state: directory
+    path: "/etc/sympa/create_list_templates/{{ item }}"
+    owner: sympa
+    group: sympa
+    mode: '0770'
+  loop: "{{ sympa_list_templates }}"
+
+- name: Add template files
+  template:
+    src: "lists/{{ item[0] }}/{{ item[1] }}.j2"
+    dest: "/etc/sympa/create_list_templates/{{ item[0] }}/{{ item[1] }}.tt2"
+    owner: sympa
+    group: sympa
+    mode: '0660'
+  loop: "{{ sympa_list_templates | product(['config', 'comment']) | list }}"
