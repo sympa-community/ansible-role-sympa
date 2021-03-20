@@ -7,9 +7,8 @@
 # Default templates location: {{ sympa_installation_directory }}/default/create_list_templates
 # Custom templates location: {{ sympa_configuration_directory }}/create_list_templates
 
-default {{ sympa_web_create_list_default }}
+default {{ sympa_list_templates_visibility }}
 
-{% for template in sympa_web_create_list_templates %}
-{{ template }} {% if sympa_web_create_list_default == 'read' %}hidden{% else %}read{% endif %}
-
+{% for template in sympa_list_templates %}
+{{ template }} read
 {% endfor %}
