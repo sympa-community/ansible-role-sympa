@@ -111,4 +111,7 @@ merge_feature {{ sympa_config_merge_feature | bool | ternary('on', 'off') }}
 {% endif %}
 
 # Archiving
+{% if sympa_installation_method != 'package' %}
+mhonarc /usr/local/bin/mhonarc
+{% endif %}
 process_archive {{ sympa_config_process_archive | bool | ternary('on', 'off') }}
