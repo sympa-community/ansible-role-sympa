@@ -162,6 +162,7 @@
   import_tasks: create-list-templates.yml
   tags:
     - sympa
+    - sympa-list-templates
 
 - name: Run upgrade command
   command: "{{ sympa_command }} --upgrade"
