@@ -144,6 +144,12 @@
     - sympa
     - sympa-conf
 
+- name: Custom scenari
+  import_tasks: scenari.yml
+  tags:
+    - sympa
+    - sympa-scenari
+
 - name: Create configuration file create_list.conf
   template:
     src: create_list.conf.j2

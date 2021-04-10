@@ -1,0 +1,22 @@
+---
+# Copyright (C) 2021 Stefan Hornburg (Racke) <racke@linuxia.de>
+# SPDX-License-Identifier: Artistic-2.0
+
+- name: Create directory
+  file:
+    state: directory
+    path: "/etc/sympa/scenari"
+    owner: "{{ sympa_unix_user }}"
+    group: "{{ sympa_unix_group }}"
+    mode: '0775'
+
+- name: Custom scenari
+  copy:
+    src: "{{ item  }}"
+    dest: "/etc/sympa/scenari/{{ item | basename }}"
+    owner: "{{ sympa_unix_user }}"
+    group: "{{ sympa_unix_group }}"
+    mode: '0644'
+  loop: "{{ sympa_scenari }}"
+  tags:
+    - sympa-scenari
