@@ -46,8 +46,9 @@
 
 - name: Configure Sympa
   command: |
-    ./configure --prefix="{{ sympa_installation_directory }}" --with-lockdir=/var/lock
-    {% if ansible_os_family != 'FreeBSD' %} --without-initdir{% else %}--with-initdir=/etc/rc.d{% endif %}
+    ./configure --prefix="{{ sympa_installation_directory }}"
+    --with-lockdir={% if ansible_os_family == 'FreeBSD' %}/var/spool/lock{%else %}/var/lock{% endif %}
+    {% if ansible_os_family != 'FreeBSD' %} --without-initdir{% else %} --with-initdir=/etc/rc.d{% endif %}
     {% if not sympa_build_options.setuid_fcgi %} --disable-setuid_fcgi
     {% endif %}
     {% if not sympa_build_options.setuid_queue %} --disable-setuid_queue
