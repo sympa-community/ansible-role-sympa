@@ -16,6 +16,9 @@ wwsympa_url {{ sympa_web_fcgi_protocol }}://{{ sympa_domain }}/{{ sympa_web_path
 {% if sympa_config_title is defined %}
 title {{ sympa_config_title }}
 {% endif %}
+{% if sympa_config_favicon_url is defined %}
+favicon_url {{ sympa_config_favicon_url }}
+{% endif %}
 {% if sympa_config_logo_html_definition is defined %}
 logo_html_definition {{ sympa_config_logo_html_definition | replace('\n', ' ') }}
 {% endif %}
