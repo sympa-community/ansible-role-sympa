@@ -103,6 +103,7 @@ sympa_web_authentication: []
 sympa_web_fcgi_enabled: true
 sympa_web_fcgi_protocol: https
 sympa_web_fcgi_socket: "/run/sympa/wwsympa.socket"
+sympa_web_path: sympa
 
 sympa_web_fcgi_instances: 5
 sympa_soap_fcgi_enabled: false
@@ -111,9 +112,9 @@ sympa_soap_fcgi_instances: 5
 
 sympa_web_nginx_snippet: |
   location = / {
-    return 301 /sympa;
+    return 301 /{{ sympa_web_path }};
   }
-  location /sympa {
+  location /{{ sympa_web_path }} {
     include fastcgi_params;
     fastcgi_pass  unix:{{ sympa_web_fcgi_socket }};
   }
