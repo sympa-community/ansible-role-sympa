@@ -11,5 +11,6 @@ sympa_expatdev_package: libexpat1-dev
 sympa_zlibdev_package: zlib1g-dev
 
 sympa_rsyslog_unix_user: syslog
+sympa_package_command: /usr/bin/sympa
 sympa_package_bin_directory: /usr/lib/sympa/bin
 sympa_package_fcgi_directory: /usr/lib/cgi-bin/sympa

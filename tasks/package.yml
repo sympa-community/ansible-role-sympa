@@ -75,3 +75,7 @@
   register: sympa_package_file_results
   tags:
     - sympa
+
+- name: Set variable for Sympa command
+  set_fact:
+    sympa_command: "{{ sympa_package_command }}"
