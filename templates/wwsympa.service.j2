@@ -5,11 +5,11 @@ BindTo=sympa.service
  
 [Service]
 Type=forking
-PIDFile=/run/wwsympa/wwsympa.pid
+PIDFile=/run/{{ sympa_web_fcgi_socket.split('/')[2] }}/wwsympa.pid
 ExecStart=/usr/bin/spawn-fcgi -F $FCGI_CHILDREN \
-    -P /run/wwsympa/wwsympa.pid \
+    -P /run/{{ sympa_web_fcgi_socket.split('/')[2] }}/wwsympa.pid \
     -u $FCGI_USER -g $FCGI_GROUP $FCGI_OPTS -- \
-    {{ sympa_installation_directory }}/bin/wwsympa.fcgi
+    {{ sympa_fcgi_directory }}/wwsympa.fcgi
 Environment="FCGI_CHILDREN={{ sympa_web_fcgi_instances }}"
 Environment="FCGI_USER={{ sympa_unix_user }}"
 Environment="FCGI_GROUP={{ sympa_unix_group }}"

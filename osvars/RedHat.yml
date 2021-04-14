@@ -9,3 +9,6 @@ sympa_cpanm_package: perl-App-cpanminus
 sympa_openssldev_package: openssl-devel
 sympa_expatdev_package: expat-devel
 sympa_zlibdev_package: zlib-devel
+
+sympa_package_bin_directory: /usr/sbin
+sympa_package_fcgi_directory: /usr/libexec/sympa

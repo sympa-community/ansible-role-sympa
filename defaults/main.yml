@@ -4,6 +4,10 @@
 
 sympa_installation_method: repository
 sympa_installation_directory: /usr/local/sympa
+sympa_bin_directory: |-
+  {% if sympa_installation_method == 'package' %}{{ sympa_package_bin_directory }}{% else %}{{ sympa_installation_directory }}/bin{% endif %}
+sympa_fcgi_directory: |-
+  {% if sympa_installation_method == 'package' %}{{ sympa_package_fcgi_directory | default(sympa_package_bin_directory) }}{% else %}{{ sympa_installation_directory }}/bin{% endif %}
 sympa_configuration_directory: /etc/sympa
 sympa_source_directory: /usr/local/src/sympa
 sympa_unix_user: sympa
