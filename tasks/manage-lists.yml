@@ -2,6 +2,17 @@
 # Copyright (C) 2020 Stefan Hornburg (Racke) <racke@linuxia.de>
 # SPDX-License-Identifier: Artistic-2.0
 
+- name: Query information about the Sympa user
+  getent:
+    database: passwd
+    key: "{{ sympa_unix_user }}"
+    split: ":"
+  register: sympa_user_info
+
+- name: Determine home directory of the Sympa user
+  set_fact:
+    sympa_unix_user_home: "{{ getent_passwd[sympa_unix_user][4] }}"
+
 - name: Create XML
   set_fact:
     sympa_list_xmlstring: |
@@ -24,11 +35,11 @@
 - name: Save XML as file
   copy:
     content: "{{ sympa_list_xmlstring }}"
-    dest: "/home/{{ sympa_unix_user }}/{{ item.name }}.xml"
+    dest: "{{ sympa_unix_user_home }}/{{ item.name }}.xml"
   with_items: "{{ sympa_lists }}"
       
 - name: Add list
-  command: "{{ sympa_command }} --create_list --input_file=/home/{{ sympa_unix_user }}/{{ item.name }}.xml"
+  command: "{{ sympa_command }} --create_list --input_file={{ sympa_unix_user_home }}/{{ item.name }}.xml"
   with_items: "{{ sympa_lists }}"
   become_user: "{{ sympa_unix_user }}"
   vars:
