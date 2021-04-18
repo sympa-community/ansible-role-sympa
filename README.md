@@ -40,6 +40,18 @@ The Sympa role provides a snippet for Nginx in the variable
 *sympa_web_nginx_snippet* which can be included in a virtual host
 configuration file.
 
+## Custom scenari
+
+Custom scenari can be installed from files listed in the *sympa_scenari*
+variable:
+
+    sympa_scenari:
+      - scenari/visibility.identified
+
+Included in the role are the following scenari:
+
+ - visibility.identified [(#1140)](https://github.com/sympa-community/sympa/pull/1140)
+
 ## Inclusion of data sources
 
 ### ODBC
