@@ -9,7 +9,7 @@
        compress
        delaycompress
 	   copytruncate
-	   create 660 {{ sympa_unix_user }} {{ sympa_unix_group }}
+	   create 640 {{ sympa_unix_user }} {{ sympa_unix_group }}
        postrotate
            service rsyslog restart
        endscript
