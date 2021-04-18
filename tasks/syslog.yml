@@ -16,7 +16,7 @@
   file:
     dest: /var/log/sympa.log
     state: touch
-    mode: 0660
+    mode: 0640
     owner: "{{ sympa_rsyslog_unix_user }}"
     group: "{{ sympa_unix_group }}"
   tags: syslog
