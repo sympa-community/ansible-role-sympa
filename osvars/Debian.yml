@@ -13,3 +13,4 @@ sympa_zlibdev_package: zlib1g-dev
 sympa_package_command: /usr/bin/sympa
 sympa_package_bin_directory: /usr/lib/sympa/bin
 sympa_package_fcgi_directory: /usr/lib/cgi-bin/sympa
+sympa_package_share_directory: /usr/share/sympa
