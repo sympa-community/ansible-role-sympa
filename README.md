@@ -217,6 +217,10 @@ You can enable it for individual lists in the list configuration.
 
 Whether WWSympa is enabled (default).
 
+#### *sympa_web_fcgi_protocol
+
+Protocol for WWSympa URL. Defaults to `https`.
+
 #### *sympa_web_fcgi_instances*
 
 Number of FCGI instances (default: 5)
@@ -232,6 +236,10 @@ Title for the web interface.
 #### *sympa_soap_fcgi_enabled*
 
 Whether SOAP is enabled (disabled by default).
+
+#### *sympa_soap_fcgi_protocol
+
+Protocol for SOAP URL. Defaults to `https`.
 
 #### *sympa_soap_fcgi_instances*
 
