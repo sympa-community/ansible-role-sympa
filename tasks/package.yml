@@ -15,7 +15,7 @@
       value: "{{ sympa_domain }}"
     - name: wwsympa
       question: "wwsympa_url"
-      value: "{{ sympa_web_fcgi_protocol }}://{{ sympa_domain }}/sympa"
+      value: "{{ sympa_web_fcgi_protocol }}://{{ sympa_domain }}/{{ sympa_web_path }}"
   when: ansible_os_family == 'Debian'
   register: ansible_debconf_preseed
   tags:
