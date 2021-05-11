@@ -64,14 +64,18 @@
   copy:
     src: "{{ sympa_package_file }}"
     dest: "{{ sympa_tempdir.path }}/{{ sympa_package_file | basename }}"
-  when: sympa_package_file is defined
+  when:
+    - sympa_package_file is defined
+    - sympa_tempdir is not skipped
   tags:
     - sympa
 
 - name: Install Sympa from package file (Debian)
   apt:
     deb: "{{ sympa_tempdir.path }}/{{ sympa_package_file | basename }}"
-  when: sympa_package_file is defined
+  when:
+    - sympa_package_file is defined
+    - sympa_tempdir is not skipped
   register: sympa_package_file_results
   tags:
     - sympa
