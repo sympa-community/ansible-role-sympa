@@ -99,8 +99,11 @@ You can pick from different installation methods through the
 *sympa_installation_method* variable:
 
     - *source*: install from tarball
+    - *package*: install from distribution package
     - *repository*: install from Git repository
     - *sync*: install from directory on the controller 
+
+Default is *source*.
 
 #### *sympa_source_directory*
 
