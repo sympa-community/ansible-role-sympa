@@ -23,7 +23,7 @@ sympa_repository_url: https://github.com/sympa-community/sympa.git
 sympa_repository_version: sympa-6.2
 
 sympa_source_url: "https://github.com/sympa-community/sympa/releases/download/{{ sympa_source_version }}/sympa-{{ sympa_source_version}}.tar.gz"
-sympa_source_version: 6.2.60
+sympa_source_version: 6.2.62
 sympa_source_patches: []
 
 sympa_cpanm_program: /usr/bin/cpanm
