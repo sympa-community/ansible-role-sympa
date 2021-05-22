@@ -101,6 +101,8 @@ sympa_email_exim_transport_snippet: |
     group = {{ sympa_unix_group }}
 
 sympa_scenari: []
+sympa_email_templates: []
+sympa_web_templates: []
 
 sympa_list_templates_visibility: read
 sympa_list_templates: []

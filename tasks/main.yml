@@ -144,6 +144,20 @@
     - sympa
     - sympa-conf
 
+- name: Email templates
+  import_tasks: email-templates.yml
+  when: sympa_email_templates | count > 0
+  tags:
+    - sympa
+    - sympa-email-templates
+
+- name: Web templates
+  import_tasks: web-templates.yml
+  when: sympa_web_templates | count > 0
+  tags:
+    - sympa
+    - sympa-web-templates
+
 - name: Custom scenari
   import_tasks: scenari.yml
   tags:

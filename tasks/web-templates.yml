@@ -1,0 +1,21 @@
+---
+# Copyright (C) 2021 Stefan Hornburg (Racke) <racke@linuxia.de>
+# SPDX-License-Identifier: Artistic-2.0
+
+- name: Create directory
+  file:
+    state: directory
+    path: "/etc/sympa/web_tt2"
+    owner: "{{ sympa_unix_user }}"
+    group: "{{ sympa_unix_group }}"
+    mode: '0775'
+
+- name: Custom web templates
+  copy:
+    src: "{{ item  }}"
+    dest: "/etc/sympa/web_tt2/{{ item | basename }}"
+    owner: "{{ sympa_unix_user }}"
+    group: "{{ sympa_unix_group }}"
+    mode: '0644'
+  loop: "{{ sympa_email_templates }}"
+
