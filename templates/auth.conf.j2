@@ -1,3 +1,6 @@
+# Configuration of Web Authentication services for Sympa
+
+{% if sympa_web_authentication | count %}
 {% for auth_method in sympa_web_authentication %}
 {{ auth_method.backend }}{% for key,var in auth_method.items() %}
 {% if key != 'backend' %}
@@ -5,3 +8,9 @@
 {% endfor %}
 
 {% endfor %}
+{% else %}
+# Internal authentication by email and password
+
+user_table
+	regexp .*
+{% endif %}

@@ -135,7 +135,6 @@
     owner: "{{ sympa_unix_user }}"
     group: "{{ sympa_unix_group }}"
     mode: 0640
-  when: sympa_web_authentication | count > 0
   notify:
     - restart sympa
     - restart wwsympa
