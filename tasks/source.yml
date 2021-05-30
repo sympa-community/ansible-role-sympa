@@ -2,12 +2,18 @@
 # Copyright (C) 2020 Stefan Hornburg (Racke) <racke@linuxia.de>
 # SPDX-License-Identifier: Artistic-2.0
 
+- name: Check if tarball is already present
+  stat:
+    path: "{{ sympa_source_directory }}/sympa-{{ sympa_source_version }}.tar.gz"
+  register: sympa_tarball
+
 - name: Download sources
   get_url:
     url: "{{ sympa_source_url }}"
     dest: "{{ sympa_source_directory }}"
     owner: "{{ sympa_unix_user }}"
     group: "{{ sympa_unix_group }}"
+  when: not sympa_tarball.stat.exists
 
 - name: Install GNU tar on Alpine Linux
   package:
