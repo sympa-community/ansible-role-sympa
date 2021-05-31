@@ -1,0 +1,5 @@
+{% for topic in sympa_topics %}
+{{ topic.name }}
+title {{ topic.title | default(topic.name ) }}
+
+{% endfor %}

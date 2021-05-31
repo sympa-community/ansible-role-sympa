@@ -143,6 +143,24 @@
     - sympa
     - sympa-conf
 
+- name: Create configuration file topics.conf
+  template:
+    src: topics.conf.j2
+    dest: /etc/sympa/topics.conf
+    owner: "{{ sympa_unix_user }}"
+    group: "{{ sympa_unix_group }}"
+    mode: 0640
+  when:
+    - sympa_topics is defined
+    - sympa_topics | count
+  notify:
+    - restart sympa
+    - restart wwsympa
+    - restart sympasoap
+  tags:
+    - sympa
+    - sympa-conf
+
 - name: Email templates
   import_tasks: email-templates.yml
   when: sympa_email_templates | count > 0
