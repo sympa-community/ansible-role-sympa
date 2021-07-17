@@ -217,6 +217,10 @@ You can enable it for individual lists in the list configuration.
 
 ### WWSympa
 
+#### *sympa_web_domain*
+
+Set this variable if you use a different domain for the web interface than *sympa_domain*.
+
 #### *sympa_web_fcgi_enabled*
 
 Whether WWSympa is enabled (default).

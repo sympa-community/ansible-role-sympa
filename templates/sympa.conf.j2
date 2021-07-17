@@ -12,7 +12,7 @@ listmaster listmaster@{{ sympa_domain }}
 
 {% if sympa_web_fcgi_enabled %}
 # Web interface
-wwsympa_url {{ sympa_web_fcgi_protocol }}://{{ sympa_domain }}/{{ sympa_web_path }}
+wwsympa_url {{ sympa_web_fcgi_protocol }}://{{ sympa_web_domain | default(sympa_domain) }}/{{ sympa_web_path }}
 {% if sympa_config_title is defined %}
 title {{ sympa_config_title }}
 {% endif %}
