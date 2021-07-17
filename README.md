@@ -101,7 +101,8 @@ You can pick from different installation methods through the
     - *source*: install from tarball
     - *package*: install from distribution package
     - *repository*: install from Git repository
-    - *sync*: install from directory on the controller 
+    - *sync*: install from directory on the controller
+    - *none*: skip installation (only for special cases)
 
 Default is *source*.
 

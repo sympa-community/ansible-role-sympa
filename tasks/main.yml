@@ -18,7 +18,7 @@
 - name: Check for valid installation method
   assert:
     that:
-      sympa_installation_method in ['package', 'repository', 'source', 'sync']
+      sympa_installation_method in ['none', 'package', 'repository', 'source', 'sync']
   tags: sympa
 
 - name: Check for mandatory parameter
@@ -74,13 +74,15 @@
     - sympa-database-driver
 
 - name: Run tasks specific for installation method
-  include_tasks: "{{ sympa_installation_method }}.yml"
+  include_tasks:
+    file: "{{ sympa_installation_method }}.yml"
+  when: sympa_installation_method != 'none'
   tags:
     - sympa
 
 - name: Configure, make and install Sympa
   import_tasks: config-make-install.yml
-  when: sympa_installation_method != 'package'
+  when: sympa_installation_method not in ['none', 'package']
   notify: restart sympa
 
 - name: Enable syslog
@@ -207,7 +209,9 @@
   vars:
     ansible_ssh_pipelining: true
   when:
-    - sympa_installation_method != 'package'
+    - sympa_installation_method not in ['none', 'package']
+  tags:
+    - sympa
 
 - name: Add unit files for sympa services
   template:
