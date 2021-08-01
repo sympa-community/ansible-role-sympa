@@ -1,0 +1,8 @@
+# Robot configuration for {{ item.domain }}
+domain {{ item.domain }}
+
+{% if sympa_web_fcgi_enabled %}
+# Web interface
+wwsympa_url {{ sympa_web_fcgi_protocol }}://{{ item.web_domain | default(item.domain) }}/{{ sympa_web_path }}
+cookie_domain {{ item.web_domain | default(item.domain) }}
+{% endif %}
