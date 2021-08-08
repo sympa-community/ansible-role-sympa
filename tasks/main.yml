@@ -130,6 +130,13 @@
     - sympa
     - sympa-conf
 
+- name: Create configuration files for robots on request
+  import_tasks: robots.yml
+  when: sympa_robots | default([]) | count > 0
+  tags:
+    - sympa
+    - sympa-conf
+
 - name: Create configuration file auth.conf
   template:
     src: auth.conf.j2
