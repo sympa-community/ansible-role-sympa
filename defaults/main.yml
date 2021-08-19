@@ -127,6 +127,9 @@ sympa_web_nginx_snippet: |
   location /{{ sympa_web_path }} {
     include fastcgi_params;
     fastcgi_pass  unix:{{ sympa_web_fcgi_socket }};
+    {% if sympa_web_nginx_read_timeout is defined %}
+    fastcgi_read_timeout {{ sympa_web_nginx_read_timeout }};
+    {% endif %}
   }
 
   location /static-sympa {
