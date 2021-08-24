@@ -136,6 +136,7 @@
   tags:
     - sympa
     - sympa-conf
+    - sympa-robots
 
 - name: Create configuration file auth.conf
   template:
