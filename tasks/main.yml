@@ -152,6 +152,7 @@
   tags:
     - sympa
     - sympa-conf
+    - sympa-auth
 
 - name: Create configuration file topics.conf
   template:
