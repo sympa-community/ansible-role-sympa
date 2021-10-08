@@ -154,6 +154,22 @@
     - sympa-conf
     - sympa-auth
 
+- name: Create configuration file edit_list.conf
+  template:
+    src: edit_list.conf.j2
+    dest: /etc/sympa/edit_list.conf
+    owner: "{{ sympa_unix_user }}"
+    group: "{{ sympa_unix_group }}"
+    mode: 0644
+  notify:
+    - restart sympa
+    - restart wwsympa
+    - restart sympasoap
+  tags:
+    - sympa
+    - sympa-conf
+    - sympa-edit-list
+
 - name: Create configuration file topics.conf
   template:
     src: topics.conf.j2

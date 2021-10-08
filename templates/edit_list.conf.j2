@@ -1,0 +1,168 @@
+# This file describes which part of a config file may be
+# modified or viewed by 
+# listmaster, privileged list owners, owners, editors
+# Some keys to understand this file :
+#
+# There is no hierarchical relation between  populations in this
+# configuration file. You need to explicitely list populations
+#
+# listmasters' email addresses are set in sympa.conf 
+# owners are listed in each <listname>/config file. When the owner paragraph
+# contains the keyword "priviliged" the owner is a "privileged_owner"
+#
+# this file is set in order to restrict the modification of editor and owners
+# to privileged_owner
+#
+# the family_name parameter must stay in "read"
+#
+# each line is a set of 3 field
+# <Parameter> <Population> <Privilege>
+# <Population> : <listmaster|privileged_owner|owner|default> 
+# <Privilege> : <write|read|hidden>
+# parameter named "default" means any other parameter
+
+{% for entry in sympa_edit_list_privileges | default([]) %}
+{{ entry.name }}   {% if entry.roles is string %}{{ entry.roles }}{% else %}{{ entry.roles | join(',') }}{% endif %}           {{ entry.privilege }}
+{% endfor %}
+
+include_file 			owner,privileged_owner 		hidden
+
+include_remote_file		owner,privileged_owner 		hidden
+
+# Obsoleted by include_sympa_list
+include_list 			owner,privileged_owner 		hidden
+
+include_sql_query 		owner,privileged_owner 		hidden
+
+include_ldap_query 		owner,privileged_owner 		hidden
+
+include_ldap_2level_query	owner,privileged_owner 		hidden
+
+include_sql_ca 		owner,privileged_owner 		hidden
+
+include_ldap_ca 		owner,privileged_owner 		hidden
+
+include_ldap_2level_ca	owner,privileged_owner 		hidden
+
+include_sympa_list		owner,privileged_owner		hidden
+include_remote_sympa_list	owner,privileged_owner 		hidden
+
+include_admin			owner,privileged_owner 		hidden
+
+export				owner,privileged_owner 		hidden
+
+ttl 				owner,privileged_owner 		hidden
+
+shared_doc 			owner,privileged_owner 		write
+shared_doc.quota		owner,privileged_owner		read
+
+process_archive			owner,privileged_owner		read
+archive.web_access		owner,privileged_owner		write
+archive.quota			owner,privileged_owner		read
+archive.max_month		owner,privileged_owner		write
+archive				owner,privileged_owner		read
+
+review 				owner 				read
+review 				privileged_owner 		write
+
+add 				owner,privileged_owner 		hidden
+
+del 				owner,privileged_owner 		hidden
+
+remind 				owner,privileged_owner 		hidden
+
+remind_return_path 		owner,privileged_owner 		hidden
+
+welcome_return_path 		owner,privileged_owner 		hidden
+
+priority 			owner,privileged_owner 		hidden
+
+max_size 			owner,privileged_owner 		hidden
+
+footer_type 			owner,privileged_owner 		hidden
+
+cookie 				owner,privileged_owner 		hidden
+
+clean_delay_queuemod 		owner,privileged_owner 		hidden
+
+bounce 				owner,privileged_owner 		read
+
+host 				owner,privileged_owner 		read
+
+account 			owner,privileged_owner 		hidden
+
+family_name                     listmaster,privileged_owner,owner  read
+
+owner 				owner 				read
+owner.profile 			owner,privileged_owner 		read
+owner 				privileged_owner 		write
+owner.info	 		owner 				hidden
+
+owner_include			owner				read
+
+owner_domain			owner				read
+owner_domain_min		owner				read
+owner_domain			privileged_owner		write
+owner_domain_min		privileged_owner		write
+
+editor 				owner 				read
+editor 				privileged_owner 		write
+
+editor_include			owner				read
+
+send 				owner 				read
+send 				privileged_owner 		write
+
+status 				owner 				hidden
+status 				privileged_owner 		read
+
+update 				owner 				hidden
+update 				privileged_owner 		read
+
+creation 			owner 				hidden
+creation 			privileged_owner 		read
+
+serial 				owner 				hidden
+serial 				privileged_owner 		read
+
+anonymous_sender 		owner,privileged_owner 		hidden
+
+forced_reply_to 		owner,privileged_owner 		hidden
+
+custom_header 			owner,privileged_owner 		hidden
+
+remove_headers			owner,privileged_owner		hidden
+
+remove_outgoing_headers		owner,privileged_owner		hidden
+
+dkim_feature			listmaster			write
+dkim_feature			owner,privileged_owner		hidden
+
+dkim_parameters			listmaster	 		write
+dkim_parameters			owner,privileged_owner 		hidden
+
+dkim_signature_apply_on		listmaster	 		write
+dkim_signature_apply_on		owner,privileged_owner 		hidden
+
+arc_feature			listmaster			write
+arc_feature			owner,privileged_owner		hidden
+
+arc_parameters			listmaster			write
+arc_parameters			owner,privileged_owner		hidden
+
+create_list_request.tt2		owner,privileged_owner 		hidden
+
+list_created.tt2 		owner,privileged_owner 		hidden
+
+max_list_members		owner,privileged_owner		read
+max_list_members		editor				hidden
+
+message_hook			owner				hidden
+message_hook			privileged_owner		read
+
+personalization			owner,privileged_owner		read
+
+{% for default in sympa_edit_list_defaults %}
+default             {{ default.role }}  {{ default.privilege }}
+{% endfor %}
+

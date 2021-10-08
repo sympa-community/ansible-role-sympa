@@ -52,6 +52,23 @@ Included in the role are the following scenari:
 
  - visibility.identified [(#1140)](https://github.com/sympa-community/sympa/pull/1140)
 
+## Privileges for editing list configuration
+
+The privileges are listed in the configuration file `/etc/sympa/edit_list.conf`.
+
+You can override or add privileges through the variable *sympa_edit_list_privileges*:
+
+    sympa_edit_list_privileges:
+      - name: process_archive
+        roles:
+          - owner
+          - privileged_owner
+        privilege: hidden
+
+That prevents owners to enable or disable archiving for a list.
+
+The roles can also given as comma-separated list, e.g `owner,privileged_owner`.
+
 ## Inclusion of data sources
 
 ### ODBC
