@@ -130,6 +130,9 @@ sympa_web_nginx_snippet: |
     {% if sympa_web_nginx_read_timeout is defined %}
     fastcgi_read_timeout {{ sympa_web_nginx_read_timeout }};
     {% endif %}
+    {% if sympa_web_nginx_fcgi_options is defined %}
+    {{ sympa_web_nginx_fcgi_options }}
+    {% endif %}
   }
 
   location /static-sympa {
