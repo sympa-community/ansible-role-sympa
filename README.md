@@ -190,6 +190,17 @@ Maximum size of an incoming message in bytes.
 
 Sympa's default is 5242880 (5 MB).
 
+### Privileges
+
+#### *sympa_config_create_list*
+
+Determines how can request or create a list. Default value is
+*public_listmaster*.
+
+Change this to *listmaster* in order to prevent users to request a list:
+
+  sympa_config_create_list: listmaster
+
 ### Languages
 
 ### *sympa_config_lang*

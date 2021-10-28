@@ -39,6 +39,7 @@ sympa_services:
 
 sympa_config_additional_subscriber_fields: ""
 sympa_config_additional_user_fields: ""
+sympa_config_create_list: "public_listmaster"
 sympa_config_alias_manager: Template
 sympa_config_etc: /etc/sympa
 sympa_config_lang: ""

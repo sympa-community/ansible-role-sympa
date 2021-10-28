@@ -84,6 +84,11 @@ password_case {{ sympa_config_password_case }}
 ## Password hash
 password_hash {{ sympa_config_password_hash }}
 
+# Privileges
+
+## List creation request
+create_list {{ sympa_config_create_list }}
+
 # Language
 {% if sympa_config_lang %}
 lang {{ sympa_config_lang }}
