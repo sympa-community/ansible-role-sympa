@@ -13,11 +13,12 @@
   set_fact:
     sympa_unix_user_home: "{{ getent_passwd[sympa_unix_user][4] }}"
 
-- name: Create XML
-  set_fact:
-    sympa_list_xmlstring: |
+- name: Save XML as file
+  copy:
+    content:  |
       <?xml version="1.0" encoding="utf-8"?>
       <list>
+        <robot>{{ item.robot }}</robot>
         <owner multiple="1">
           <email>{{ item.owner }}</email>
         </owner>
@@ -30,11 +31,6 @@
         <type>{{ item.type }}</type>
         <listname>{{ item.name }}</listname>
       </list>
-  with_items: "{{ sympa_lists }}"
-
-- name: Save XML as file
-  copy:
-    content: "{{ sympa_list_xmlstring }}"
     dest: "{{ sympa_unix_user_home }}/{{ item.name }}.xml"
   with_items: "{{ sympa_lists }}"
       
