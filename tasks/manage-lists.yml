@@ -18,7 +18,7 @@
     content:  |
       <?xml version="1.0" encoding="utf-8"?>
       <list>
-        <robot>{{ item.robot }}</robot>
+        {% if 'robot' in item %}<robot>{{ item.robot }}</robot>{% endif %}
         <owner multiple="1">
           <email>{{ item.owner }}</email>
         </owner>
