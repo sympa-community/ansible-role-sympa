@@ -47,5 +47,4 @@
     ansible_ssh_pipelining: true
   register: sympa_add_list_result
   failed_when:
-    - sympa_add_list_result.rc == 1
-    - sympa_add_list_result.stderr is not search('list already exists')
+    (sympa_add_list_result.rc == 1 and sympa_add_list_result.stderr |  default('') is not search('list already exists|existiert bereits')) or sympa_add_list_result.rc > 1
