@@ -232,6 +232,11 @@ You can enable it for individual lists in the list configuration.
 
 Set this variable if you use a different domain for the web interface than *sympa_domain*.
 
+#### *sympa_web_path*
+
+Path component of URL for the web interface without slash. Default is
+`sympa`.
+
 #### *sympa_web_fcgi_enabled*
 
 Whether WWSympa is enabled (default).
