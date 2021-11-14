@@ -20,7 +20,6 @@
 # <Population> : <listmaster|privileged_owner|owner|default> 
 # <Privilege> : <write|read|hidden>
 # parameter named "default" means any other parameter
-
 {% for entry in sympa_edit_list_privileges | default([]) %}
 {{ entry.name }}   {% if entry.roles is string %}{{ entry.roles }}{% else %}{{ entry.roles | join(',') }}{% endif %}           {{ entry.privilege }}
 {% endfor %}
@@ -163,6 +162,6 @@ message_hook			privileged_owner		read
 personalization			owner,privileged_owner		read
 
 {% for default in sympa_edit_list_defaults %}
-default             {{ default.role }}  {{ default.privilege }}
+default                        {{ default.role }} {{ ' ' * (29 - default.role | length) }}  {{ default.privilege }}
 {% endfor %}
 

@@ -54,14 +54,14 @@ sympa_config_shared_feature: 'on'
 sympa_config_dkim_feature: false
 
 sympa_edit_list_defaults:
-  - role: listmaster
-    privilege: write
   - role: privileged_owner
     privilege: write
   - role: owner
     privilege: write
   - role: editor
     privilege: read
+  - role: listmaster
+    privilege: write
 
 sympa_syslog_rotations: 52
 
