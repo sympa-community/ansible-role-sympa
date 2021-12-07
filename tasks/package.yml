@@ -19,6 +19,9 @@
     - question: "language"
       type: select
       value: "{{ sympa_config_lang }}"
+    - question: "use_soap"
+      type: "boolean"
+      value: "{{ sympa_soap_fcgi_enabled }}"
   when: ansible_os_family == 'Debian'
   register: ansible_debconf_preseed
   tags:
