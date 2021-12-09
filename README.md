@@ -284,9 +284,7 @@ Protocol for SOAP URL. Defaults to `https`.
 
 #### *sympa_soap_fcgi_instances*
 
-Number of FCGI instances (default: 5)
-
-Recommended value for development instances is 2.
+Number of FCGI instances (default: 2)
 
 ## Dependencies
 

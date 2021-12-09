@@ -129,7 +129,7 @@ sympa_web_path: sympa
 sympa_web_fcgi_instances: 5
 sympa_soap_fcgi_enabled: false
 sympa_soap_fcgi_protocol: https
-sympa_soap_fcgi_instances: 5
+sympa_soap_fcgi_instances: 2
 
 sympa_web_nginx_snippet: |
   location = / {
