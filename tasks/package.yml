@@ -19,6 +19,9 @@
     - question: "language"
       type: select
       value: "{{ sympa_config_lang }}"
+    - question: "remove_spool"
+      type: "boolean"
+      value: "{{ sympa_debconf_remove_spool | default(false) | ternary('true', 'false') }}"
     - question: "use_soap"
       type: "boolean"
       value: "{{ sympa_soap_fcgi_enabled }}"
