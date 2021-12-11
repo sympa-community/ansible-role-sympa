@@ -85,6 +85,7 @@
   when:
     - sympa_package_file is defined
     - sympa_tempdir is not skipped
+    - ansible_os_family == 'Debian'
   register: sympa_package_file_results
   tags:
     - sympa
