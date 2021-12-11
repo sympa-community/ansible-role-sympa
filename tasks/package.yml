@@ -86,6 +86,25 @@
   tags:
     - sympa
 
+- name: Adjust number of FCGI instances
+  lineinfile:
+    path: "/etc/default/sympa"
+    regexp: "^{{ item.name }}="
+    line: "{{ item.name }}={{ item.value }}"
+    create: yes
+    owner: root
+    group: root
+    mode: '0644'
+  loop:
+    - name: WWS_FCGI_CHILDREN
+      value: "{{ sympa_web_fcgi_instances }}"
+    - name: SOAP_FCGI_CHILDREN
+      value: "{{ sympa_soap_fcgi_instances }}"
+  notify:
+    - restart wwsympa
+    - restart sympasoap
+  when: ansible_os_family == 'Debian'
+
 - name: Set variable for Sympa command
   set_fact:
     sympa_command: "{{ sympa_package_command }}"
