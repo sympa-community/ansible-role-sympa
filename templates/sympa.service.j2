@@ -9,6 +9,8 @@ Before={{ service }}.service
 [Service]
 Type=forking
 PIDFile={{ sympa_installation_directory }}/sympa_msg.pid
+ExecStartPre=+/bin/mkdir -p /run/sympa
+ExecStartPre=+/bin/chown sympa:sympa /run/sympa
 ExecStartPre={{ sympa_installation_directory }}/bin/sympa.pl --health_check
 ExecStart={{ sympa_installation_directory }}/bin/sympa_msg.pl
 User={{ sympa_unix_user }}
