@@ -252,6 +252,7 @@
   notify: "restart {{ item }}"
   tags:
     - sympa
+    - sympa-units
   
 - name: Reload systemd if necessary
   systemd:
@@ -280,9 +281,15 @@
   when:
     - sympa_installation_method != 'package'
     - sympa_web_fcgi_enabled
-    
+  tags:
+    - sympa-units
+    - wwsympa
+
 - name: SOAP
   import_tasks: soap.yml
   when:
     - sympa_installation_method != 'package'
     - sympa_soap_fcgi_enabled
+  tags:
+    - sympa-units
+    - sympasoap
