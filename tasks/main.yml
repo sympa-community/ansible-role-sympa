@@ -12,8 +12,7 @@
         - "defaults.yml"
       paths: osvars
   tags:
-    - sympa
-    - sympa-database-driver
+    - always
 
 - name: Check for valid installation method
   assert:
