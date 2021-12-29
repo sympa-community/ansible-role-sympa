@@ -29,8 +29,8 @@
 - name: Install Expat development library needed for SOAP interface
   package:
     name:
-      - "{{ sympa_expatdev_package }}" # XML::Parser
-      - "{{ sympa_zlibdev_package }}" # IO::Socket::SSL
+      - "{{ sympa_expatdev_package }}"  # XML::Parser
+      - "{{ sympa_zlibdev_package }}"  # IO::Socket::SSL
   when: sympa_soap_fcgi_enabled
 
 - name: Install SSL development library
