@@ -55,7 +55,7 @@
 - name: Install Sympa from distribution package
   package:
     name: sympa
-  become: yes
+  become: true
   when: sympa_package_file is not defined
   register: sympa_package_distribution_results
   tags:
@@ -95,7 +95,7 @@
     path: "/etc/default/sympa"
     regexp: "^{{ item.name }}="
     line: "{{ item.name }}={{ item.value }}"
-    create: yes
+    create: true
     owner: root
     group: root
     mode: '0644'

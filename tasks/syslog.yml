@@ -10,7 +10,7 @@
   service:
     name: rsyslog
     state: started
-    enabled: yes
+    enabled: true
 
 - name: Create sympa log file
   file:

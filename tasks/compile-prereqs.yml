@@ -11,8 +11,8 @@
     name: "{{ sympa_unix_user }}"
     group: "{{ sympa_unix_group }}"
     shell: /bin/bash
-    createhome: yes
-    password_lock: yes
+    createhome: true
+    password_lock: true
 
 - name: Create directory for sources
   file:

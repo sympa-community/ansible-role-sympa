@@ -11,7 +11,7 @@
   git:
     repo: "{{ sympa_repository_url }}"
     dest: "{{ sympa_source_directory }}"
-    force: yes
+    force: true
     version: "{{ sympa_repository_version }}"
   become_user: "{{ sympa_unix_user }}"
   vars:

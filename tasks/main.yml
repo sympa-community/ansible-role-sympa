@@ -256,7 +256,7 @@
 
 - name: Reload systemd if necessary
   systemd:
-    daemon_reload: yes
+    daemon_reload: true
   with_items: "{{ sympa_services }}"
   when:
     - ansible_service_mgr == "systemd"
@@ -267,7 +267,7 @@
 - name: Ensure that Sympa is enabled and started
   service:
     name: sympa
-    enabled: yes
+    enabled: true
     state: started
   tags:
     - sympa

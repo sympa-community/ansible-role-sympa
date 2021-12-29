@@ -24,14 +24,14 @@
 
 - name: Reload systemd if necessary
   systemd:
-    daemon_reload: yes
+    daemon_reload: true
   when:
     - wwsympa_unit_file.changed
 
 - name: Ensure that WWSympa is enabled and started
   service:
     name: wwsympa
-    enabled: yes
+    enabled: true
     state: started
   tags:
     - sympa

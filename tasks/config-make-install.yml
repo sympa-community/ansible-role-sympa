@@ -41,7 +41,7 @@
     state: link
     src: "/usr/bin/core_perl/pod2man"
     dest: "/usr/local/bin/pod2man"
-  become: yes
+  become: true
   when: ansible_os_family == 'Archlinux'
 
 - name: Configure Sympa
@@ -100,4 +100,4 @@
     state: link
     src: "{{ sympa_command }}"
     dest: /usr/local/bin/sympa
-  become: yes
+  become: true
