@@ -15,7 +15,7 @@
 
 - name: Save XML as file
   copy:
-    content:  |
+    content: |
       <?xml version="1.0" encoding="utf-8"?>
       <list>
         {% if 'robot' in item %}<robot>{{ item.robot }}</robot>{% endif %}
