@@ -23,7 +23,7 @@
 - name: Check for mandatory parameter
   assert:
     that:
-       sympa_sync_directory is defined
+      sympa_sync_directory is defined
   when: sympa_installation_method == 'sync'
   tags:
     - sympa
