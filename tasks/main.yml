@@ -253,7 +253,7 @@
   tags:
     - sympa
     - sympa-units
-  
+
 - name: Reload systemd if necessary
   systemd:
     daemon_reload: yes

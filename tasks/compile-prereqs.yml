@@ -13,7 +13,7 @@
     shell: /bin/bash
     createhome: yes
     password_lock: yes
-    
+
 - name: Create directory for sources
   file:
     state: directory

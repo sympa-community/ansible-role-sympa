@@ -20,7 +20,7 @@
     owner: "{{ sympa_rsyslog_unix_user }}"
     group: "{{ sympa_unix_group }}"
   tags: syslog
-  
+
 - name: Install custom rsyslog conf file
   template:
     src: syslog.conf.j2
@@ -39,4 +39,3 @@
     group: root
     mode: 0644
   tags: logrotate
-  

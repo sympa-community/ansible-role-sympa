@@ -18,4 +18,3 @@
     group: "{{ sympa_unix_group }}"
     mode: '0644'
   loop: "{{ sympa_email_templates }}"
-

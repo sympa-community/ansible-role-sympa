@@ -33,7 +33,7 @@
       </list>
     dest: "{{ sympa_unix_user_home }}/{{ item.name }}.xml"
   with_items: "{{ sympa_lists }}"
-      
+
 - name: Add list
   command: |-
     {{ sympa_command }} --create_list {% if 'robot' in item %}--robot={{ item.robot }}{% endif %} --input_file={{ sympa_unix_user_home }}/{{ item.name }}.xml

@@ -16,8 +16,6 @@
 
 - name: Fix permissions
   command: chown -R sympa:sympa {{ sympa_source_directory }}
-    
+
 - name: Import tasks to install Perl modules
   import_tasks: perl-modules.yml
-
-  
