@@ -73,6 +73,7 @@
   copy:
     src: "{{ sympa_package_file }}"
     dest: "{{ sympa_tempdir.path }}/{{ sympa_package_file | basename }}"
+    mode: 0644
   when:
     - sympa_package_file is defined
     - sympa_tempdir is not skipped

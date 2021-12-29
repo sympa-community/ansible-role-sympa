@@ -32,6 +32,7 @@
         <listname>{{ item.name }}</listname>
       </list>
     dest: "{{ sympa_unix_user_home }}/{{ item.name }}.xml"
+    mode: 0644
   with_items: "{{ sympa_lists }}"
 
 - name: Add list
