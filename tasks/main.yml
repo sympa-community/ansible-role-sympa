@@ -120,6 +120,7 @@
     owner: "{{ sympa_unix_user }}"
     group: "{{ sympa_unix_group }}"
     mode: 0640
+  no_log: true
   when: sympa_installation_method != 'package' or ansible_os_family == 'RedHat'
   notify:
     - restart sympa
@@ -144,6 +145,7 @@
     owner: "{{ sympa_unix_user }}"
     group: "{{ sympa_unix_group }}"
     mode: 0640
+  no_log: true
   notify:
     - restart sympa
     - restart wwsympa
