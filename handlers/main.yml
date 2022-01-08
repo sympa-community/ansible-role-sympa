@@ -3,43 +3,43 @@
 # SPDX-License-Identifier: GPL-2.0-or-later
 
 - name: restart sympa
-  systemd:
+  service:
     name: sympa
     state: restarted
 
 - name: restart sympa-archive
-  systemd:
+  service:
     name: sympa-archive
     state: restarted
 
 - name: restart sympa-bounce
-  systemd:
+  service:
     name: sympa-bounce
     state: restarted
 
 - name: restart sympa-outgoing
-  systemd:
+  service:
     name: sympa-outgoing
     state: restarted
 
 - name: restart sympa-task
-  systemd:
+  service:
     name: sympa-task
     state: restarted
 
 - name: restart wwsympa
-  systemd:
+  service:
     name: wwsympa
     state: restarted
   when: sympa_web_fcgi_enabled
 
 - name: restart sympasoap
-  systemd:
+  service:
     name: sympasoap
     state: restarted
   when: sympa_soap_fcgi_enabled
 
 - name: restart rsyslog
-  systemd:
+  service:
     name: rsyslog
     state: restarted
