@@ -6,6 +6,7 @@ sympa_database_driver_odbc: perl-dbd-odbc
 sympa_web_unix_user: nginx
 
 sympa_cpanm_package: perl-app-cpanminus
+sympa_gettext_package: gettext-dev
 sympa_openssldev_package: libressl-dev
 sympa_expatdev_package: expat-dev
 sympa_zlibdev_package: zlib-dev
