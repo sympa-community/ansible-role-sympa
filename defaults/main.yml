@@ -6,11 +6,14 @@ sympa_installation_method: source
 sympa_installation_directory: /usr/local/sympa
 sympa_bin_directory: |-
   {% if sympa_installation_method == 'package' %}{{ sympa_package_bin_directory }}{% else %}{{ sympa_installation_directory }}/bin{% endif %}
+sympa_list_home_directory: |-
+  {{ if sympa_installation_method == 'package' %}{{ sympa_package_list_home_directory }}{% else %}{{sympa_installation_directory }}/list_data
 sympa_fcgi_directory: |-
   {% if sympa_installation_method == 'package' %}{{ sympa_package_fcgi_directory | default(sympa_package_bin_directory) }}{% else %}{{ sympa_installation_directory }}/bin{% endif %}
 sympa_share_directory: |-
   {% if sympa_installation_method == 'package' %}{{ sympa_package_share_directory }}{% else %}{{ sympa_installation_directory }}{% endif %}
 sympa_configuration_directory: /etc/sympa
+sympa_package_list_home_directory: /var/lib/sympa/list_data
 sympa_source_directory: /usr/local/src/sympa
 sympa_unix_user: sympa
 sympa_unix_group: sympa
