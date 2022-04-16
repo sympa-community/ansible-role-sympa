@@ -11,13 +11,22 @@
     mode: 0755
   loop: "{{ sympa_robots }}"
 
+- name: Create list data directory for robots
+  file:
+    state: directory
+    path: "{{ sympa_list_home_directory }}/{{ item.domain }}"
+    owner: "{{ sympa_unix_user }}"
+    group: "{{ sympa_unix_group }}"
+    mode: 0755
+  loop: "{{ sympa_robots }}"
+
 - name: Create configuration file
   template:
     src: robot.conf.j2
     dest: "{{ sympa_configuration_directory }}/{{ item.domain }}/robot.conf"
     owner: "{{ sympa_unix_user }}"
     group: "{{ sympa_unix_group }}"
-    mode: 0755
+    mode: 0644
   loop: "{{ sympa_robots }}"
   notify:
     - restart sympa
