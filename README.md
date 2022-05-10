@@ -166,6 +166,16 @@ List of patches which will be applied before building, e.g.:
       - patches/soap-api-access-fix.diff
       - patches/disable-setuid-1032.diff
 
+#### Repository installation method
+
+##### *sympa_repository_url*
+
+Git repository, defaults to https://github.com/sympa-community/sympa.git.
+
+##### *sympa_repository_version*
+
+Git branch or tag, defaults to `sympa-6.2`.
+
 ### Aliases
 
 #### *sympa_config_sendmail_aliases*
