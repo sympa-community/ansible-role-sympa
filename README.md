@@ -16,7 +16,7 @@ Supported platforms are:
 * Ubuntu 16 (Xenial)
 * Ubuntu 18 (Bionic)
 * Ubuntu 20 (Focal)
-* Ubuntu 22 (Groovy)
+* Ubuntu 22 (Jammy)
 
 ## Requirements
 
