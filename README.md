@@ -176,6 +176,12 @@ Git repository, defaults to https://github.com/sympa-community/sympa.git.
 
 Git branch or tag, defaults to `sympa-6.2`.
 
+#### Sync installation method
+
+##### *sympa_sync_directory*
+
+Directory on the Ansible controller with the Sympa sources.
+
 ### Aliases
 
 #### *sympa_config_sendmail_aliases*
