@@ -104,6 +104,8 @@
     path: "{{ sympa_config_sendmail_aliases }}"
     owner: "{{ sympa_unix_user }}"
     group: "{{ sympa_unix_group }}"
+    access_time: preserve
+    modification_time: preserve
 
 - name: Create Sympa configuration directory
   file:
