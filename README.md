@@ -151,12 +151,12 @@ binaries are a security risk.
 
 ##### *sympa_source_version*
 
-Sympa version, defaults to *6.2.66*.
+Sympa version, defaults to *6.2.68*.
 
 ##### *sympa_source_url*
 
 Sympa download location. The default value includes *sympa_source_version*,
-e.g. https://github.com/sympa-community/sympa/releases/download/6.2.66/sympa-6.2.66.tar.gz.
+e.g. https://github.com/sympa-community/sympa/releases/download/6.2.68/sympa-6.2.68.tar.gz.
 
 ##### *sympa_source_patches*
 
