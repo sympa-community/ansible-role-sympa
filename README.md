@@ -11,7 +11,8 @@ Supported platforms are:
 * Debian 8 (Jessie)
 * Debian 9 (Stretch)
 * Debian 10 (Buster)
-* Fedora 31
+* Fedora 35
+* Fedora 36
 * openSUSE Leap 15
 * Ubuntu 16 (Xenial)
 * Ubuntu 18 (Bionic)
