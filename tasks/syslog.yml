@@ -19,6 +19,8 @@
     mode: 0640
     owner: "{{ sympa_rsyslog_unix_user }}"
     group: "{{ sympa_unix_group }}"
+    access_time: preserve
+    modification_time: preserve
   tags: syslog
   
 - name: Install custom rsyslog conf file
