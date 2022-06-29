@@ -295,7 +295,7 @@ Title for the web interface.
 
 Whether SOAP is enabled (disabled by default).
 
-#### *sympa_soap_fcgi_protocol
+#### *sympa_soap_fcgi_protocol*
 
 Protocol for SOAP URL. Defaults to `https`.
 
