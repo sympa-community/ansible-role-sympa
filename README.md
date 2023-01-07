@@ -175,7 +175,7 @@ Git repository, defaults to https://github.com/sympa-community/sympa.git.
 
 ##### *sympa_repository_version*
 
-Git branch or tag, defaults to `sympa-6.2`.
+Git branch or tag, defaults to `main`.
 
 #### Sync installation method
 
