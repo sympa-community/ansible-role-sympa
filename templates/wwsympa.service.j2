@@ -1,23 +1,25 @@
 [Unit]
 Description=WWSympa - Web interface for Sympa mailing list manager
-After=syslog.target
-BindTo=sympa.service
+After=sympa.service
+Requires=wwsympa.socket
+Documentation=man:wwsympa(8)
  
 [Service]
-Type=forking
-PIDFile=/run/{{ sympa_web_fcgi_socket.split('/')[2] }}/wwsympa.pid
-ExecStart=/usr/bin/spawn-fcgi -F $FCGI_CHILDREN \
-    -P /run/{{ sympa_web_fcgi_socket.split('/')[2] }}/wwsympa.pid \
-    -u $FCGI_USER -g $FCGI_GROUP $FCGI_OPTS -- \
-    {{ sympa_fcgi_directory }}/wwsympa.fcgi
+User={{ sympa_unix_user }}
+Group={{ sympa_unix_group }}
+ExecStart=/usr/bin/multiwatch -f $FCGI_CHILDREN \
+          -- {{ sympa_fcgi_directory}}/wwsympa.fcgi
+StandardOutput=null
+StandardInput=socket
+StandardError=null
+
 Environment="FCGI_CHILDREN={{ sympa_web_fcgi_instances }}"
-Environment="FCGI_USER={{ sympa_unix_user }}"
-Environment="FCGI_GROUP={{ sympa_unix_group }}"
-Environment="FCGI_OPTS=-s {{ sympa_web_fcgi_socket }} -M 0660 -G {{ sympa_web_unix_user }}"
 EnvironmentFile=-/etc/sysconfig/sympa
-RuntimeDirectory={{ sympa_web_fcgi_socket.split('/')[2] }}
-RuntimeDirectoryPreserve=yes
-Restart=always
+Restart=on-failure
+RestartSec=15
+
+PrivateTmp=true
 
 [Install]
+Also=wwsympa.socket
 WantedBy=multi-user.target

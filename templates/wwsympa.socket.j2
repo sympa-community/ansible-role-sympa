@@ -1,0 +1,12 @@
+[Unit]
+Description=Sympa Web Interface Socket
+
+[Socket]
+SocketUser={{ sympa_web_unix_user }}
+SocketGroup={{ sympa_web_unix_user }}
+SocketMode=0660
+
+ListenStream=/run/sympa/wwsympa.socket
+
+[Install]
+WantedBy=sockets.target

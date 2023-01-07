@@ -9,14 +9,34 @@
     - sympa
     - wwsympa
 
-- name: Create systemd unit for WWSympa
+- name: Install multiwatch
+  package:
+    name: multiwatch
+  tags:
+    - sympa
+    - wwsympa
+
+- name: Create socket unit for WWSympa
+  template:
+    src: wwsympa.socket.j2
+    dest: /etc/systemd/system/wwsympa.socket
+    owner: root
+    group: root
+    mode: 0644
+  register: wwsympa_socket_unit
+  notify: restart wwsympa
+  tags:
+    - sympa
+    - wwsympa
+
+- name: Create service unit for WWSympa
   template:
     src: wwsympa.service.j2
     dest: /etc/systemd/system/wwsympa.service
     owner: root
     group: root
     mode: 0644
-  register: wwsympa_unit_file
+  register: wwsympa_service_unit
   notify: restart wwsympa
   tags:
     - sympa
@@ -26,11 +46,11 @@
   systemd:
     daemon_reload: yes
   when:
-    - wwsympa_unit_file.changed
+    - wwsympa_socket_unit.changed or wwsympa_service_unit.changed
 
-- name: Ensure that WWSympa is enabled and started
+- name: Ensure that WWSympa socket is enabled and started
   service:
-    name: wwsympa
+    name: wwsympa.socket
     enabled: yes
     state: started
   tags:
