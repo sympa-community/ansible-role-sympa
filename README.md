@@ -41,6 +41,15 @@ The Sympa role provides a snippet for Nginx in the variable
 *sympa_web_nginx_snippet* which can be included in a virtual host
 configuration file.
 
+The FCGI settings can be adjusted with the variables
+*sympa_web_nginx_read_timeout* and *sympa_web_nginx_fcgi_options*.
+
+With a lots of lists and a fresh WWSympa instance it takes a while to
+generate the list overview:
+
+    # raise FCGI timeout to 3 minutes
+    sympa_web_nginx_read_timeout: 180
+
 ## Custom scenari
 
 Custom scenari can be installed from files listed in the *sympa_scenari*
