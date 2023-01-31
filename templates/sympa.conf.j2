@@ -84,6 +84,10 @@ password_case {{ sympa_config_password_case }}
 ## Password hash
 password_hash {{ sympa_config_password_hash }}
 
+## Users
+allow_account_deletion {{ sympa_config_allow_account_deletion | default('off')
+  | bool | ternary('on', 'off') }}
+
 # Privileges
 
 ## List creation request

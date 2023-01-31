@@ -244,6 +244,15 @@ Change this to *listmaster* in order to prevent users to request a list:
 
   sympa_config_create_list: listmaster
 
+### Accounts
+
+#### *allow_account_deletion*
+
+Whether to allow the user to delete its own account from the web interface.
+Default value is false.
+
+    sympa_allow_account_deletion: true
+
 ### Languages
 
 ### *sympa_config_lang*
