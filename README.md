@@ -242,7 +242,7 @@ Determines how can request or create a list. Default value is
 
 Change this to *listmaster* in order to prevent users to request a list:
 
-  sympa_config_create_list: listmaster
+    sympa_config_create_list: listmaster
 
 ### Accounts
 
@@ -259,13 +259,13 @@ Default value is false.
 
 Configures the default language:
 
-  sympa_config_lang: de
+    sympa_config_lang: de
   
 ### *sympa_config_supported_lang*
 
 Configures the supported languages:
 
-  sympa_config_supported_lang: de,en_US
+    sympa_config_supported_lang: de,en_US
 
 You can also use a list instead of a comma separated string.
 
@@ -273,7 +273,7 @@ You can also use a list instead of a comma separated string.
 
 You can enable personalization for all lists with:
 
-  sympa_config_merge_feature: true
+    sympa_config_merge_feature: true
   
 This is not recommended though unless all lists use that feature.
 You can enable it for individual lists in the list configuration.
