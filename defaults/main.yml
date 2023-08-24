@@ -7,7 +7,7 @@ sympa_installation_directory: /usr/local/sympa
 sympa_bin_directory: |-
   {% if sympa_installation_method == 'package' %}{{ sympa_package_bin_directory }}{% else %}{{ sympa_installation_directory }}/bin{% endif %}
 sympa_list_home_directory: |-
-  {{ if sympa_installation_method == 'package' %}{{ sympa_package_list_home_directory }}{% else %}{{sympa_installation_directory }}/list_data
+  {% if sympa_installation_method == 'package' %}{{ sympa_package_list_home_directory }}{% else %}{{sympa_installation_directory }}/list_data{% endif %}
 sympa_fcgi_directory: |-
   {% if sympa_installation_method == 'package' %}{{ sympa_package_fcgi_directory | default(sympa_package_bin_directory) }}{% else %}{{ sympa_installation_directory }}/bin{% endif %}
 sympa_share_directory: |-
