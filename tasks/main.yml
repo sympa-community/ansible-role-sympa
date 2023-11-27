@@ -89,6 +89,8 @@
   when:
     - sympa_installation_method != 'package'
     - ansible_os_family not in ['Alpine', 'Archlinux', 'FreeBSD']
+  tags:
+    - sympa-syslog
 
 - name: Create directory for file with list aliases
   file:
