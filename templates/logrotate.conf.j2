@@ -11,6 +11,10 @@
 	   copytruncate
 	   create 640 {{ sympa_unix_user }} {{ sympa_unix_group }}
        postrotate
+{% if ansible_service_mgr == 'systemd' %}
+           systemctl restart rsyslog
+{% else %}
            service rsyslog restart
+{% endif %}
        endscript
 }
