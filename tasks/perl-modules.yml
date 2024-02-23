@@ -19,6 +19,10 @@
       - libc-dev
   when: ansible_os_family == 'Alpine'
 
+- name: Install XML library
+  package:
+    name: "{{ sympa_xml2dev_package }}"
+
 - name: Workaround for XML::LibXML installation problem on CentOS 7
   package:
     name: perl-XML-LibXML

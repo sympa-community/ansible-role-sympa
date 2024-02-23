@@ -9,4 +9,5 @@ sympa_cpanm_package: cpanminus
 sympa_cpanm_program: /usr/bin/vendor_perl/cpanm
 sympa_openssldev_package: openssl
 sympa_expatdev_package: expat
+sympa_xml2dev_package: libxml2
 sympa_zlibdev_package: zlib
