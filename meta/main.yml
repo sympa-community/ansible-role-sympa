@@ -2,7 +2,7 @@
 galaxy_info:
   author: Stefan Hornburg
   description: Role to install Sympa. 
-  # license: tbd.
+  license: GPL-2.0
   min_ansible_version: "2.5"
   namespace: racke
   role_name: sympa
