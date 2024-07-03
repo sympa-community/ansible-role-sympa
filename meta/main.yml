@@ -1,0 +1,38 @@
+---
+galaxy_info:
+  author: Stefan Hornburg
+  description: Role to install Sympa. 
+  license: GPL-2.0
+  min_ansible_version: "2.5"
+  namespace: racke
+  role_name: sympa
+
+  platforms:
+    - name: ArchLinux
+    - name: opensuse
+      versions:
+        - "15.0"
+    - name: EL
+      versions:
+        - "7"
+        - "8"
+    - name: Debian
+      versions:
+        - jessie
+        - stretch
+        - buster
+    - name: Ubuntu
+      versions:
+        - xenial
+        - bionic
+        - focal
+        - jammy
+    - name: Fedora
+      versions:
+        - "35"
+        - "36"
+
+  galaxy_tags:
+    - sympa
+
+dependencies: []
