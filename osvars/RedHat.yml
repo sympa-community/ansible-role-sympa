@@ -11,6 +11,7 @@ sympa_openssldev_package: openssl-devel
 sympa_expatdev_package: expat-devel
 sympa_xml2dev_package: libxml2-devel
 sympa_zlibdev_package: zlib-devel
+sympa_smime_package: pkgconf
 
 sympa_package_command: /usr/sbin/sympa.pl
 sympa_package_bin_directory: /usr/sbin
