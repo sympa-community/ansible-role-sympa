@@ -7,3 +7,4 @@ sympa_web_unix_user: nginx
 
 sympa_cpanm_package: perl-App-cpanminus
 sympa_openssldev_package: libopenssl-devel
+sympa_ldap_package: perl-ldap
