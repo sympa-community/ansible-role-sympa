@@ -162,3 +162,15 @@ sympa_soap_nginx_snippet: |
 sympa_install_odbc_driver: false
 
 sympa_rsyslog_unix_user: "{{ sympa_unix_user }}"
+
+sympa_smime_enabled: false
+sympa_config_ldap:
+  host: "192.168.56.5"
+  base_dn: "dc=realm,dc=example,dc=com"
+  bind_dn: uid=bin,cn=sysaccounts,cn=etc,dc=realm,dc=example,dc=com
+  bind_password: password
+  email_attribute: mail
+  use_tls: ldaps
+  get_dn_by_uid_filter: (uid=[sender])
+  get_dn_by_email_filter: (mail=[sender])
+  authentication_info_url: https://portal.example.de
