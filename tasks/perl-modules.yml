@@ -56,6 +56,8 @@
   set_fact:
     sympa_cpanm_features: "{{ sympa_cpanm_features + ['soap'] }}"
   when: sympa_soap_fcgi_enabled
+  tags: sympasoap
 
 - name: Install Perl modules with cpanm
   command: "{{ sympa_cpanm_program }} --notest --installdeps {{ sympa_source_directory }}{% for feature in sympa_cpanm_features %}  --with-feature {{ feature }}{% endfor %}"
+  tags: sympasoap
