@@ -134,3 +134,13 @@ merge_feature {{ sympa_config_merge_feature | bool | ternary('on', 'off') }}
 mhonarc /usr/local/bin/mhonarc
 {% endif %}
 process_archive {{ sympa_config_process_archive | bool | ternary('on', 'off') }}
+
+# S/MIME
+{% if sympa_smime_enabled %}
+cafile {{ sympa_smime.cafile }}
+capath {{ sympa_smime.capath }}
+{% if sympa_smime.key_passwd  is defined %}
+key_passwd {{ sympa_smime.key_passwd }}
+{% endif %}
+ssl_cert_dir {{ sympa_smime.ssl_cert_dir }}
+{% endif %}

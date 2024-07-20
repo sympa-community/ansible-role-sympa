@@ -162,3 +162,9 @@ sympa_soap_nginx_snippet: |
 sympa_install_odbc_driver: false
 
 sympa_rsyslog_unix_user: "{{ sympa_unix_user }}"
+
+sympa_smime_enabled: false
+sympa_smime:
+  cafile: "{{ sympa_installation_directory}}/list_data/CA/cert.pem"
+  capath: "{{ sympa_installation_directory}}/list_data/CA"
+  ssl_cert_dir: "{{ sympa_installation_directory}}/list_data/X509-user-certs"

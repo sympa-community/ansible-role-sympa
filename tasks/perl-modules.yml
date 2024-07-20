@@ -23,6 +23,11 @@
   package:
     name: "{{ sympa_xml2dev_package }}"
 
+- name: Install S/MIME library
+  ansible.builtin.package:
+    name: "{{ sympa_smime_package }}"
+  when: sympa_smime_enabled
+
 - name: Workaround for XML::LibXML installation problem on CentOS 7
   package:
     name: perl-XML-LibXML
@@ -57,6 +62,11 @@
     sympa_cpanm_features: "{{ sympa_cpanm_features + ['soap'] }}"
   when: sympa_soap_fcgi_enabled
   tags: sympasoap
+
+- name: Add SMIME to features if SMIME is enabled
+  ansible.builtin.set_fact:
+    sympa_cpanm_features: "{{ sympa_cpanm_features + ['Crypt::SMIME', 'Crypt::OpenSSL::X509'] }}"
+  when: sympa_smime_enabled
 
 - name: Install Perl modules with cpanm
   command: "{{ sympa_cpanm_program }} --notest --installdeps {{ sympa_source_directory }}{% for feature in sympa_cpanm_features %}  --with-feature {{ feature }}{% endfor %}"
