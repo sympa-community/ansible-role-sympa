@@ -10,6 +10,7 @@ sympa_gettext_package: gettext
 sympa_openssldev_package: libssl-dev
 sympa_expatdev_package: libexpat1-dev
 sympa_xml2dev_package: libxml2-dev
+sympa_ldap_package: libnet-ldap-perl
 sympa_zlibdev_package: zlib1g-dev
 
 sympa_package_command: /usr/bin/sympa

@@ -11,3 +11,4 @@ sympa_openssldev_package: openssl
 sympa_expatdev_package: expat
 sympa_xml2dev_package: libxml2
 sympa_zlibdev_package: zlib
+sympa_ldap_package: perl-ldap

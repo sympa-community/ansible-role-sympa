@@ -10,3 +10,4 @@ sympa_gettext_package: gettext-dev
 sympa_openssldev_package: libressl-dev
 sympa_expatdev_package: expat-dev
 sympa_zlibdev_package: zlib-dev
+sympa_ldap_package: perl-ldap

@@ -23,6 +23,10 @@
   package:
     name: "{{ sympa_xml2dev_package }}"
 
+- name: Install LDAP library
+  package:
+    name: "{{ sympa_ldap_package }}"
+
 - name: Workaround for XML::LibXML installation problem on CentOS 7
   package:
     name: perl-XML-LibXML

@@ -10,3 +10,4 @@ sympa_cpanm_program: /usr/local/bin/cpanm
 sympa_make_package: gmake
 sympa_expatdev_package: expat
 sympa_zlibdev_package: zlib
+sympa_ldap_package: p5-perl-ldap
