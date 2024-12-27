@@ -126,7 +126,7 @@ sympa_web_authentication: []
 
 sympa_web_fcgi_enabled: true
 sympa_web_fcgi_protocol: https
-sympa_web_fcgi_socket: "/run/wwsympa/wwsympa.socket"
+sympa_web_fcgi_socket: "/run/sympa/wwsympa.socket"
 sympa_web_path: sympa
 
 sympa_web_fcgi_instances: 5
