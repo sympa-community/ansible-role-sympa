@@ -134,3 +134,8 @@ merge_feature {{ sympa_config_merge_feature | bool | ternary('on', 'off') }}
 mhonarc /usr/local/bin/mhonarc
 {% endif %}
 process_archive {{ sympa_config_process_archive | bool | ternary('on', 'off') }}
+{% if sympa_config_extra_parameters is defined %}
+
+# Extra parameters
+{{ sympa_config_extra_parameters }}
+{% endif %}
