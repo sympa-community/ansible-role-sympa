@@ -249,7 +249,7 @@
     dest: "/etc/systemd/system/{{ item }}.service"
     owner: root
     group: root
-    mode: 0755
+    mode: '0640'
   with_items: "{{ sympa_services }}"
   when:
     - sympa_installation_method != 'package'
