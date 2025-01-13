@@ -71,7 +71,7 @@ sympa_syslog_rotations: 52
 sympa_email_exim_router_snippet: |
   # Sympa router for list aliases
   sympa_list_aliases:
-    debug_print = "R: sympa list aliases for $local_part@$domain"
+    debug_print = "R: sympa list aliases for $local_part_data@$domain_data"
     driver = redirect
     domains = {{ sympa_domain }}
     allow_fail
@@ -83,7 +83,7 @@ sympa_email_exim_router_snippet: |
 
   # Sympa generic aliases for "sympa" and "listmaster"
   sympa_queue_aliases:
-    debug_print = "R: sympa queue aliases for $local_part@$domain"
+    debug_print = "R: sympa queue aliases for $local_part_data@$domain_data"
     driver = accept
     domains = {{ sympa_domain }}
     local_parts = sympa : listmaster
@@ -92,7 +92,7 @@ sympa_email_exim_router_snippet: |
 
   # Sympa generic aliases for "bounce" and "abuse-feedback-report"
   sympa_bouncequeue_aliases:
-    debug_print = "R: sympa bouncequeue aliases for $local_part@$domain"
+    debug_print = "R: sympa bouncequeue aliases for $local_part_data@$domain_data"
     driver = accept
     domains = {{ sympa_domain }}
     local_parts = bounce : abuse-feedback-report
@@ -103,14 +103,14 @@ sympa_email_exim_transport_snippet: |
   # Sympa transport for queue program
   sympa_queue_transport:
     driver = pipe
-    command = {{ sympa_installation_directory }}/bin/queue ${local_part}\@$domain
+    command = {{ sympa_installation_directory }}/bin/queue ${local_part_data}\@$domain_data
     user = {{ sympa_unix_user }}
     group = {{ sympa_unix_group }}
 
   # Sympa transport for bouncequeue program
   sympa_bounce_queue_transport:
     driver = pipe
-    command = {{ sympa_installation_directory }}/bin/bouncequeue ${local_part}\@$domain
+    command = {{ sympa_installation_directory }}/bin/bouncequeue ${local_part_data}\@$domain_data
     user = {{ sympa_unix_user }}
     group = {{ sympa_unix_group }}
 
