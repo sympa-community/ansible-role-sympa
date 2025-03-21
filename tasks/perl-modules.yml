@@ -55,9 +55,22 @@
 - name: Add SOAP to features if SOAP interface is enabled
   set_fact:
     sympa_cpanm_features: "{{ sympa_cpanm_features + ['soap'] }}"
-  when: sympa_soap_fcgi_enabled
+  when: sympa_soap_fcgi_enabled | bool
   tags: sympasoap
+
+- name: Add ldap-secure to features if LDAP auth is enabled
+  set_fact:
+    sympa_cpanm_features: "{{ sympa_cpanm_features + ['ldap-secure'] }}"
+  when: sympa_ldap_auth_enabled | bool
+  tags: sympaldap
+
+- name: Print features before install
+  ansible.builtin.debug:
+    var: sympa_cpanm_features
+    verbosity: 1
 
 - name: Install Perl modules with cpanm
   command: "{{ sympa_cpanm_program }} --notest --installdeps {{ sympa_source_directory }}{% for feature in sympa_cpanm_features %}  --with-feature {{ feature }}{% endfor %}"
-  tags: sympasoap
+  tags:
+  - sympasoap
+  - sympaldap
