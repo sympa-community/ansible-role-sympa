@@ -233,6 +233,11 @@
     - sympa
     - sympa-list-templates
 
+- name: Check whether data structure version file exists
+  stat:
+    path: "/etc/sympa/data_structure.version"
+  register: sympa_data_version_file_results
+
 - name: Run upgrade command
   command: "{{ sympa_command }} --upgrade"
   become_user: "{{ sympa_unix_user }}"
@@ -240,8 +245,21 @@
     ansible_ssh_pipelining: true
   when:
     - sympa_installation_method not in ['none', 'package']
+    - sympa_data_version_file_results.stat.exists
   tags:
     - sympa
+
+- name: Create data structure version file
+  copy:
+    content: |
+      {{ sympa_source_version }}
+    dest: "/etc/sympa/data_structure.version"
+    owner: "{{ sympa_unix_user }}"
+    group: "{{ sympa_unix_group }}"
+    mode: '0644'
+  when:
+    - sympa_installation_method not in ['none', 'package']
+    - not sympa_data_version_file_results.stat.exists
 
 - name: Add unit files for sympa services
   template:
