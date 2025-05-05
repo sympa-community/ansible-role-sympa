@@ -14,3 +14,21 @@
 user_table
 	regexp .*
 {% endif %}
+
+# LDAP
+{% if sympa_config_ldap is defined %}
+ldap
+    host                        {{ sympa_config_ldap.host}}
+    timeout                     {{ sympa_config_ldap.timeout | default('20') }}
+    bind_dn                     {{ sympa_config_ldap.bind_dn }}
+    bind_password               {{ sympa_config_ldap.bind_password }}
+    suffix                      {{ sympa_config_ldap.base_dn }}
+    get_dn_by_uid_filter        {{ sympa_config_ldap.get_dn_by_uid_filter }}
+    get_dn_by_email_filter      {{ sympa_config_ldap.get_dn_by_email_filter }}
+    alternative_email_attribute {{ sympa_config_ldap.alternative_email_attribute | default('mail') }}
+    email_attribute             {{ sympa_config_ldap.email_attribute | default('mail') }}
+    scope                       {{ sympa_config_ldap.scope | default('sub') }}
+    authentication_info_url     {{ sympa_config_ldap.authentication_info_url }}
+    use_tls                     {{ sympa_config_ldap.use_tls }}
+    ca_verify                   {{ sympa_config_ldap.ca_verify | default('none') }}
+{% endif %}
