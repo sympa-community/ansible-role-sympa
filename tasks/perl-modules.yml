@@ -42,6 +42,14 @@
     name: "{{ sympa_openssldev_package }}"
   when: sympa_config_dkim_feature or sympa_soap_fcgi_enabled
 
+- name: Install SSL development library and zlib development needed for LDAP
+  package:
+    name:
+      - "{{ sympa_openssldev_package }}"
+      - "{{ sympa_zlibdev_package }}"
+  when: sympa_ldap_auth_enabled | bool
+  tags: sympaldap
+
 - name: Add Mail::DKIM::Verifier to features if DKIM support is requested
   set_fact:
     sympa_cpanm_features: "{{ sympa_cpanm_features + ['Mail::DKIM::Verifier'] }}"
