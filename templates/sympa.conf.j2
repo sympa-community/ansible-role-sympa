@@ -139,3 +139,35 @@ process_archive {{ sympa_config_process_archive | bool | ternary('on', 'off') }}
 # Extra parameters
 {{ sympa_config_extra_parameters }}
 {% endif %}
+
+###\\\\ DKIM ////###
+
+## dkim_feature
+dkim_feature {% if sympa_dkim_feature %}on{% else %}off{% endif %}
+
+## dkim_signature_apply_on
+## Type of message that is added a DKIM signature before distribution to
+## subscribers. Possible values are "none", "any" or a list of the following
+## keywords: "md5_authenticated_messages", "smime_authenticated_messages",
+## "dkim_authenticated_messages", "editor_validated_messages".
+{% if sympa_dkim_signature_apply_on | length>0 %}
+dkim_signature_apply_on {{ sympa_dkim_signature_apply_on | join(',') }}
+{% else %}
+dkim_signature_apply_on none
+{% endif %}
+
+## dkim_private_key_path
+## Location of the file where DKIM private key is stored
+dkim_parameters.private_key_path	{{ sympa_dkim_private_key_path }}
+
+## dkim_signer_domain
+## The "d=" tag as defined in rfc 4871, default is virtual host domain name
+{% if sympa_dkim_signer_domain is defined %}
+dkim_parameters.signer_domain	{{ sympa_dkim_signer_domain }}
+{% endif %}
+
+## dkim_selector
+## The selector
+{% if sympa_dkim_selector is defined %}
+dkim_parameters.selector {{ sympa_dkim_selector }}
+{% endif %}
