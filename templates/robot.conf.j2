@@ -1,8 +1,32 @@
-# Robot configuration for {{ item.domain }}
-domain {{ item.domain }}
+# Robot configuration for {{ sympa_robot.domain }}
+domain {{ sympa_robot.domain }}
+
+# Robot's listmaster
+{% if sympa_robot.listmaster is defined %}
+listmaster {% if sympa_robot.listmaster is string %}{{ sympa_robot.listmaster }}{% else %}{{ sympa_robot.listmaster | join(',') }}{% endif %}
+{% else %}
+listmaster listmaster@{{ sympa_robot.domain }}
+{% endif %}
 
 {% if sympa_web_fcgi_enabled %}
+
 # Web interface
-wwsympa_url {{ sympa_web_fcgi_protocol }}://{{ item.web_domain | default(item.domain) }}/{{ sympa_web_path }}
-cookie_domain {{ item.web_domain | default(item.domain) }}
+wwsympa_url {{ sympa_web_fcgi_protocol }}://{{ sympa_robot.web_domain | default(sympa_robot.domain) }}/{{ sympa_web_path }}
+cookie_domain {{ sympa_robot.web_domain | default(sympa_robot.domain) }}
 {% endif %}
+
+{% for robot_param,value in sympa_robot.items() %}
+
+{%   if robot_param != 'domain' and robot_param != 'listmaster' %}
+
+{%     if value is mapping %}
+# {{     robot_param }} value(s)
+{%       for sub_el,val in value.items() -%}
+           {{ robot_param }}.{{ sub_el }} {{ val }}
+{%       endfor %}
+{%     else %}
+# {{     robot_param }} value
+{{      robot_param }} {{ value }}
+{%-   endif %}
+{%-  endif %}
+{%- endfor %}

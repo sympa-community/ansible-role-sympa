@@ -120,6 +120,32 @@ If no value is provided, `listmaster` will be joined with a @ to the
 
 For example: *listmaster@lists.example.com*.
 
+### Sympa robots
+
+#### *sympa_robots*
+
+With *sympa_robots* the role defines and populates the `robots.conf` files of a multi-domains Sympa server.
+
+*sympa_robots* is a list of dicts, all dicts musn have a parameter *domain*, which defines the domain where the robot operates (mail and web). It may also contain any [configuration parameter valid in a `robot.conf` file](https://www.sympa.community/gpldoc/man/sympa_config.5.html), with its associated value(s).
+
+*listmaster* can be defined as an ansible list of emails, or as a string of comma separated email addresses. Compound paramentes can be defined as dicts. For instance:
+```
+sympa_robots:
+  - domain: lists.mydomain.tld
+    listmaster: ...
+
+    archive:
+      web_access: public
+      mail_access: private
+```
+will render in the `robot.conf`:
+```
+# archive value(s)
+archive.web_access public
+archive.mail_access private
+```
+
+
 ### Installation
 
 You can pick from different installation methods through the
