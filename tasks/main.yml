@@ -134,20 +134,9 @@
     - sympa
     - sympa-conf
 
-- name: Create configuration files for robots on request
-  include_tasks: 
-    file: robot.yml
-    apply:
-      tags:
-        - sympa
-        - sympa-conf
-        - sympa-robots
-  loop: "{{ sympa_robots }}"
-  loop_control:
-    loop_var: sympa_robot
-  when: 
-    - sympa_robots | count > 0
-    - sympa_robot.domain != sympa_domain
+- name: Create configuration files for robots on request (dict variable)
+  import_tasks: 
+    file: robots.yml
   tags:
     - sympa
     - sympa-conf

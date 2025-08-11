@@ -1,0 +1,41 @@
+---
+# Sympa robots configuration
+
+- name: Create configuration files for robots on request (dict variable)
+  include_tasks: 
+    file: robot.yml
+    apply:
+      tags:
+        - sympa
+        - sympa-conf
+        - sympa-robots
+  loop: "{{ sympa_robots | list }}"
+  loop_control:
+    loop_var: sympa_robot_domain
+  vars:
+    sympa_robot_domain_query: '"{{ sympa_robot_domain }}"'
+    sympa_robot: "{{ sympa_robots | community.general.json_query ( sympa_robot_domain_query ) }}"
+  when:
+    - sympa_robots is mapping
+    - sympa_robot_domain != sympa_domain
+
+
+- name: Create configuration files for robots on request (list variable)
+  include_tasks: 
+    file: robot.yml
+    apply:
+      tags:
+        - sympa
+        - sympa-conf
+        - sympa-robots
+  loop: "{{ sympa_robots | list }}"
+  loop_control:
+    loop_var: sympa_robot
+  vars:
+    sympa_robot_domain: "{{ sympa_robot.domain }}"
+  when: 
+    - sympa_robots is not mapping        # then it must be a list of dicts
+    - sympa_robot_domain != sympa_domain
+
+
+...

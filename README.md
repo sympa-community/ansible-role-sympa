@@ -126,9 +126,31 @@ For example: *listmaster@lists.example.com*.
 
 With *sympa_robots* the role defines and populates the `robots.conf` files of a multi-domains Sympa server.
 
-*sympa_robots* is a list of dicts, all dicts musn have a parameter *domain*, which defines the domain where the robot operates (mail and web). It may also contain any [configuration parameter valid in a `robot.conf` file](https://www.sympa.community/gpldoc/man/sympa_config.5.html), with its associated value(s).
+*sympa_robots* is a dict, where each key is the *domain* on which the robot operates (mail and web), and the value is a dict which defines the values of all the parameters of the robot. It may contain parameters such as listmaster, title, or any other [configuration parameter valid in a `robot.conf` file](https://www.sympa.community/gpldoc/man/sympa_config.5.html), with its associated value(s).
 
-*listmaster* can be defined as an ansible list of emails, or as a string of comma separated email addresses. Compound paramentes can be defined as dicts. For instance:
+*listmaster* can be defined as an ansible list of emails, or as a string of comma separated email addresses. Compound paramentes can be defined as sub-dicts. For instance:
+```
+sympa_robots:
+  lists.mydomain.tld:
+    listmaster: ...
+
+    archive:
+      web_access: public
+      mail_access: private
+```
+will render in the `lists.mydomain.tld/robot.conf` configuration file:
+```
+# Robot configuration for lists.mydomain.tld
+domain lists.mydomain.tld
+
+# Robot's listmaster
+listmaster ...
+
+# archive value(s)
+archive.web_access public
+archive.mail_access private
+```
+For backwards compatibility, *sympa_robots* can also be defined as a list of dicts where all items have a parameter *domain* defining the robot:
 ```
 sympa_robots:
   - domain: lists.mydomain.tld
@@ -138,13 +160,6 @@ sympa_robots:
       web_access: public
       mail_access: private
 ```
-will render in the `robot.conf`:
-```
-# archive value(s)
-archive.web_access public
-archive.mail_access private
-```
-
 
 ### Installation
 

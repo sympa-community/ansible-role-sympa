@@ -1,18 +1,18 @@
-# Robot configuration for {{ sympa_robot.domain }}
-domain {{ sympa_robot.domain }}
+# Robot configuration for {{ sympa_robot_domain }}
+domain {{ sympa_robot_domain }}
 
 # Robot's listmaster
 {% if sympa_robot.listmaster is defined %}
 listmaster {% if sympa_robot.listmaster is string %}{{ sympa_robot.listmaster }}{% else %}{{ sympa_robot.listmaster | join(',') }}{% endif %}
 {% else %}
-listmaster listmaster@{{ sympa_robot.domain }}
+listmaster listmaster@{{ sympa_robot_domain }}
 {% endif %}
 
 {% if sympa_web_fcgi_enabled %}
 
 # Web interface
-wwsympa_url {{ sympa_web_fcgi_protocol }}://{{ sympa_robot.web_domain | default(sympa_robot.domain) }}/{{ sympa_web_path }}
-cookie_domain {{ sympa_robot.web_domain | default(sympa_robot.domain) }}
+wwsympa_url {{ sympa_web_fcgi_protocol }}://{{ sympa_robot.web_domain | default(sympa_robot_domain) }}/{{ sympa_web_path }}
+cookie_domain {{ sympa_robot.web_domain | default(sympa_robot_domain) }}
 {% endif %}
 
 {% for robot_param,value in sympa_robot.items() %}
