@@ -11,13 +11,13 @@ listmaster listmaster@{{ sympa_robot_domain }}
 {% if sympa_web_fcgi_enabled %}
 
 # Web interface
-wwsympa_url {{ sympa_web_fcgi_protocol }}://{{ sympa_robot.web_domain | default(sympa_robot_domain) }}/{{ sympa_web_path }}
-cookie_domain {{ sympa_robot.web_domain | default(sympa_robot_domain) }}
+wwsympa_url {{ sympa_web_fcgi_protocol }}://{{ sympa_robot.wwsympa_url | default(sympa_robot.web_domain) | default(sympa_robot_domain) }}/{{ sympa_web_path }}
+cookie_domain {{ sympa_robot.wwsympa_url | default(sympa_robot.web_domain) | default(sympa_robot_domain) }}
 {% endif %}
 
 {% for robot_param,value in sympa_robot.items() %}
 
-{%   if robot_param != 'domain' and robot_param != 'listmaster' %}
+{%   if not robot_param in ['domain', 'listmaster', 'wwsympa_url', 'web_domain'] %}
 
 {%     if value is mapping %}
 # {{     robot_param }} value(s)
