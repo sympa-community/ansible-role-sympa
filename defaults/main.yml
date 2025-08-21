@@ -159,7 +159,7 @@ sympa_soap_nginx_snippet: |
     fastcgi_pass  unix:/run/sympasoap/sympasoap.socket;
   }
 
-sympa_robots: []
+sympa_robots: {}
 
 sympa_install_odbc_driver: false
 
