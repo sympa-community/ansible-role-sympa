@@ -54,8 +54,6 @@ sympa_config_sendmail: /usr/sbin/sendmail
 sympa_config_sendmail_aliases: /etc/mail/sympa/aliases
 sympa_config_shared_feature: 'on'
 
-sympa_config_dkim_feature: false
-
 sympa_edit_list_defaults:
   - role: privileged_owner
     privilege: write
@@ -164,6 +162,9 @@ sympa_install_odbc_driver: false
 sympa_rsyslog_unix_user: "{{ sympa_unix_user }}"
 
 sympa_dkim_feature: false
+
+sympa_config_dkim_feature: '{{ sympa_dkim_feature }}'
+
 sympa_dkim_add_signature_to:
   - robot
   - list
