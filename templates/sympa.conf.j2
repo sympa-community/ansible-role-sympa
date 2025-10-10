@@ -139,3 +139,44 @@ process_archive {{ sympa_config_process_archive | bool | ternary('on', 'off') }}
 # Extra parameters
 {{ sympa_config_extra_parameters }}
 {% endif %}
+
+## DKIM
+# adapted from stuvusIT/sympa repository on Github
+
+## dkim_feature
+dkim_feature {{ sympa_dkim_feature | bool | ternary('on', 'off') }}
+
+## dkim_add_signature_to
+## Which service messages to be signed
+## Inserts a DKIM signature to service messages in context of robot, list or both
+{% if sympa_dkim_add_signature_to is defined %}
+dkim_add_signature_to {% if sympa_dkim_add_signature_to is string %}{{ sympa_dkim_add_signature_to }}{% else %}{{ sympa_dkim_add_signature_to | join(',') }}{% endif %}
+{% endif %}
+
+## dkim_signature_apply_on
+## Type of message that is added a DKIM signature before distribution to
+## subscribers. Possible values are "none", "any" or a list of the following
+## keywords: "md5_authenticated_messages", "smime_authenticated_messages",
+## "dkim_authenticated_messages", "editor_validated_messages".
+{% if sympa_dkim_signature_apply_on | default([]) | length > 0 %}
+dkim_signature_apply_on {% if sympa_dkim_signature_apply_on is string %}{{ sympa_dkim_signature_apply_on }}{% else %}{{ sympa_dkim_signature_apply_on | join(',') }}{% endif %}
+{% else %}
+# dkim_signature_apply_on defaults is: md5_authenticated_messages,smime_authenticated_messages,dkim_authenticated_messages,editor_validated_messages
+{% endif %}
+
+## dkim_parameters.private_key_path
+## Location of the file where DKIM private key is stored
+{% if sympa_dkim_private_key_path is defined %}
+dkim_parameters.private_key_path	{{ sympa_dkim_private_key_path }}
+{% endif %}
+
+## dkim_parameters.signer_domain
+## The "d=" tag as defined in rfc 4871, default is virtual host domain name
+{% if sympa_dkim_signer_domain is defined %}
+dkim_parameters.signer_domain	{{ sympa_dkim_signer_domain }}
+{% endif %}
+
+## dkim_parameters.selector
+{% if sympa_dkim_selector is defined %}
+dkim_parameters.selector {{ sympa_dkim_selector }}
+{% endif %}
