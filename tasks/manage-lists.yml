@@ -19,9 +19,17 @@
       <?xml version="1.0" encoding="utf-8"?>
       <list>
         {% if 'robot' in item %}<robot>{{ item.robot }}</robot>{% endif %}
+        {% if item.owner is string %}
         <owner multiple="1">
           <email>{{ item.owner }}</email>
         </owner>
+        {% else %}
+        {% for owner in item.owner %}
+        <owner multiple="1">
+          <email>{{ owner }}</email>
+        </owner>
+        {% endfor %}
+        {% endif %}
         <description>Quis eos dolorem iusto sint et sequi eveniet rerum. Unde eum laborum facere tenetur. Saepe aliquid similique harum temporibus. Et fugiat aspernatur praesentium et animi ducimus exercitationem. Explicabo alias sit non omnis voluptatum expedita.
         Nesciunt nemo sed eum. Ipsam et repudiandae inventore reprehenderit. Iure nihil nulla officia et laboriosam voluptatem. Non veritatis labore culpa provident odit. Qui quis sed et cum dolorum ratione. Possimus blanditiis velit a reprehenderit ducimus itaque numquam.
         Ut et sed neque quis in ducimus. Beatae nesciunt ipsam cupiditate. Quas vel dicta porro id voluptate aut minima. Modi ea deleniti quam quasi error. Quia exercitationem et architecto fuga fuga. Et odio sunt praesentium.</description>
