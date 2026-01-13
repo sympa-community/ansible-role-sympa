@@ -224,6 +224,12 @@ You have to create these fields separately, e.g.:
       become_user: postgres
       vars:
         ansible_ssh_pipelining: true
+
+    - name: Add unsubscribe_link field to subscriber table
+      community.mysql.mysql_query:
+        login_db: sympa
+        query: 'ALTER TABLE subscriber_table ADD COLUMN IF NOT EXISTS
+            unsubscribe_link name text'
     
 ### Incoming messages
 
