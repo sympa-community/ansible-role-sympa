@@ -1,0 +1,48 @@
+---
+# Copyright (C) 2020-2022 Stefan Hornburg (Racke) <racke@linuxia.de>
+# SPDX-License-Identifier: GPL-2.0-or-later
+
+- name: Create directory for {{ sympa_robot_domain }} robot
+  file:
+    state: directory
+    path: "{{ sympa_configuration_directory }}/{{ sympa_robot_domain }}"
+    owner: "{{ sympa_unix_user }}"
+    group: "{{ sympa_unix_group }}"
+    mode: 0755
+
+- name: Create list data directory for {{ sympa_robot_domain }} robot
+  file:
+    state: directory
+    path: "{{ sympa_list_home_directory }}/{{ sympa_robot_domain }}"
+    owner: "{{ sympa_unix_user }}"
+    group: "{{ sympa_unix_group }}"
+    mode: 0755
+
+- name: Create archives' directory {{ sympa_robot_domain }} robot
+  file:
+    state: directory
+    path: "{{ sympa_installation_directory }}/arc/{{ sympa_robot_domain }}"
+    owner: "{{ sympa_unix_user }}"
+    group: "{{ sympa_unix_group }}"
+    mode: 0755
+
+- debug:
+    var: "{{ item }}"
+    verbosity: 2
+  loop:
+    - sympa_robot_domain
+    - sympa_robot
+    - sympa_robots
+
+
+- name: Create {{ sympa_robot_domain }} robot configuration file
+  template:
+    src: robot.conf.j2
+    dest: "{{ sympa_configuration_directory }}/{{ sympa_robot_domain }}/robot.conf"
+    owner: "{{ sympa_unix_user }}"
+    group: "{{ sympa_unix_group }}"
+    mode: 0644
+  notify:
+    - restart sympa
+    - restart wwsympa
+

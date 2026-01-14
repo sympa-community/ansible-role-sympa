@@ -134,9 +134,9 @@
     - sympa
     - sympa-conf
 
-- name: Create configuration files for robots on request
-  import_tasks: robots.yml
-  when: sympa_robots | default([]) | count > 0
+- name: Create configuration files for robots on request (dict variable)
+  import_tasks: 
+    file: robots.yml
   tags:
     - sympa
     - sympa-conf

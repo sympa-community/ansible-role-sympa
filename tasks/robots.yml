@@ -1,47 +1,41 @@
 ---
-# Copyright (C) 2020-2022 Stefan Hornburg (Racke) <racke@linuxia.de>
-# SPDX-License-Identifier: GPL-2.0-or-later
+# Sympa robots configuration
 
-- name: Create directory for robots
-  file:
-    state: directory
-    path: "{{ sympa_configuration_directory }}/{{ item.domain }}"
-    owner: "{{ sympa_unix_user }}"
-    group: "{{ sympa_unix_group }}"
-    mode: 0755
-  when: item.domain != sympa_domain
-  loop: "{{ sympa_robots }}"
+- name: Create configuration files for robots on request (dict variable)
+  include_tasks: 
+    file: robot.yml
+    apply:
+      tags:
+        - sympa
+        - sympa-conf
+        - sympa-robots
+  loop: "{{ sympa_robots | list }}"
+  loop_control:
+    loop_var: sympa_robot_domain
+  vars:
+    sympa_robot_domain_query: '"{{ sympa_robot_domain }}"'
+    sympa_robot: "{{ sympa_robots | community.general.json_query ( sympa_robot_domain_query ) }}"
+  when:
+    - sympa_robots is mapping
+    - sympa_robot_domain != sympa_domain
 
-- name: Create list data directory for robots
-  file:
-    state: directory
-    path: "{{ sympa_list_home_directory }}/{{ item.domain }}"
-    owner: "{{ sympa_unix_user }}"
-    group: "{{ sympa_unix_group }}"
-    mode: 0755
-  when: item.domain != sympa_domain
-  loop: "{{ sympa_robots }}"
 
-- name: Create list data directory for robots
-  file:
-    state: directory
-    path: "{{ sympa_list_home_directory }}/{{ item.domain }}"
-    owner: "{{ sympa_unix_user }}"
-    group: "{{ sympa_unix_group }}"
-    mode: 0755
-  when: item.domain != sympa_domain
-  loop: "{{ sympa_robots }}"
+- name: Create configuration files for robots on request (list variable)
+  include_tasks: 
+    file: robot.yml
+    apply:
+      tags:
+        - sympa
+        - sympa-conf
+        - sympa-robots
+  loop: "{{ sympa_robots | list }}"
+  loop_control:
+    loop_var: sympa_robot
+  vars:
+    sympa_robot_domain: "{{ sympa_robot.domain }}"
+  when: 
+    - sympa_robots is not mapping        # then it must be a list of dicts
+    - sympa_robot_domain != sympa_domain
 
-- name: Create configuration file
-  template:
-    src: robot.conf.j2
-    dest: "{{ sympa_configuration_directory }}/{{ item.domain }}/robot.conf"
-    owner: "{{ sympa_unix_user }}"
-    group: "{{ sympa_unix_group }}"
-    mode: 0644
-  when: item.domain != sympa_domain
-  loop: "{{ sympa_robots }}"
-  notify:
-    - restart sympa
-    - restart wwsympa
 
+...
