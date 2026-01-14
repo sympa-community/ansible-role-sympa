@@ -327,6 +327,16 @@ Protocol for SOAP URL. Defaults to `https`.
 
 Number of FCGI instances (default: 2)
 
+### LDAP
+
+#### *sympa_ldap_auth_enabled*
+
+Whether authentication through LDAP is enabled. Defaults to `false`.
+
+#### *sympa_ldap_auth_secure*
+
+Whether authentication through LDAP is secure. Defaults to `true`.
+
 ## Dependencies
 
 None.
