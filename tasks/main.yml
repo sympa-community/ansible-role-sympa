@@ -184,7 +184,6 @@
     mode: 0640
   when:
     - sympa_topics is defined
-    - sympa_topics | count
   notify:
     - restart sympa
     - restart wwsympa
